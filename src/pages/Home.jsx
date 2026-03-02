@@ -16,7 +16,7 @@ function Home() {
           </h1>
 
           <p className="mt-4 text-gray-300 text-lg">
-            Java Backend Developer | Spring Boot | REST APIs
+            Java Backend Developer | Spring Boot | PostgreSQL | Docker | Cloud Deployment
           </p>
 
           <p className="mt-4 text-gray-400">
