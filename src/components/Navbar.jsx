@@ -6,7 +6,9 @@ const sections = ["home", "about", "skills", "experience", "projects", "contact"
 function Navbar() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
 
+  /* 🔹 Detect Active Section */
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -27,9 +29,25 @@ function Navbar() {
     return () => observer.disconnect();
   }, []);
 
+  /* 🔹 Shrink Navbar On Scroll */
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className="fixed top-0 w-full bg-black/80 backdrop-blur-md z-50 shadow-lg">
-      <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+    <nav
+      className={`fixed top-0 w-full z-50 backdrop-blur-md transition-all duration-300 ${
+        scrolled
+          ? "bg-black/90 py-2 shadow-lg"
+          : "bg-black/70 py-4"
+      }`}
+    >
+      <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
 
         {/* Logo */}
         <a href="#home" className="flex items-center gap-3 group">
@@ -51,12 +69,11 @@ function Navbar() {
             <li key={item}>
               <a
                 href={`#${item}`}
-                className={`capitalize transition duration-200 cursor-pointer
-                  ${
-                    active === item
-                      ? "text-blue-400 border-b-2 border-blue-400 pb-1"
-                      : "text-gray-300 hover:text-blue-400"
-                  }`}
+                className={`capitalize transition duration-200 cursor-pointer ${
+                  active === item
+                    ? "text-blue-400 border-b-2 border-blue-400 pb-1"
+                    : "text-gray-300 hover:text-blue-400"
+                }`}
               >
                 {item}
               </a>
@@ -82,12 +99,11 @@ function Navbar() {
               key={item}
               href={`#${item}`}
               onClick={() => setOpen(false)}
-              className={`block capitalize text-lg transition
-                ${
-                  active === item
-                    ? "text-blue-400"
-                    : "text-gray-300 hover:text-blue-400"
-                }`}
+              className={`block capitalize text-lg transition ${
+                active === item
+                  ? "text-blue-400"
+                  : "text-gray-300 hover:text-blue-400"
+              }`}
             >
               {item}
             </a>

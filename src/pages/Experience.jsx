@@ -19,15 +19,15 @@ function Experience() {
             {/* Role & Company */}
             <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
               <h3 className="text-xl font-semibold text-blue-400">
-                Backend Developer Intern – Infosys Springboard
+                JAVA Teck Stack Intern – Infosys Springboard
               </h3>
               <span className="text-sm text-gray-400 mt-2 md:mt-0">
-                Feb 2026 – Mar 2026
+                Feb 2026 – Present
               </span>
             </div>
 
             <p className="text-gray-400 mb-4">
-              Java Full Stack | Spring Boot | PostgreSQL
+              Java Full Stack | Spring Boot | PostgreSQL | Github
             </p>
 
             {/* Responsibilities */}

@@ -1,6 +1,7 @@
 import ScrollReveal from "../components/ScrollReveal";
 import CertificationCard from "../components/CertificationCard";
 import javaCert from "../assets/certificates/java_certification.pdf";
+import fullStackCert from "../assets/certificates/fullstack_certification.pdf"; // ✅ add this file
 
 function Certification() {
   return (
@@ -16,12 +17,22 @@ function Certification() {
 
           <div className="grid md:grid-cols-2 gap-8">
 
+            {/* Java Certificate */}
             <CertificationCard
               title="Java Foundation Certification"
               provider="Infosys Springboard"
               duration="Dec 2025"
               description="Completed Java Foundation Certification covering Core Java, OOP concepts, and backend development fundamentals."
               link={javaCert}
+            />
+
+            {/* Full Stack Certificate */}
+            <CertificationCard
+              title="Building Full-Stack Apps with React and Spring"
+              provider="LinkedIn Learning"
+              duration="Feb 2026"
+              description="Completed LinkedIn Learning certification focused on building end-to-end full-stack applications using React.js and Spring Framework."
+              link={fullStackCert}
             />
 
           </div>
