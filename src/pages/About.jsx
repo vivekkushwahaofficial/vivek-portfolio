@@ -43,17 +43,28 @@ function About() {
           </p>
 
           {/* Education Card */}
-          <div className="mt-10 bg-white/5 border border-white/10 rounded-xl p-6 hover:shadow-lg hover:border-blue-400/30 transition duration-300">
-            <h4 className="text-blue-400 font-medium">
-              B.Tech in Computer Science & Engineering
-            </h4>
-            <p className="text-sm text-gray-400 mt-2">
-              Oriental Institute of Science and Technology
-            </p>
-            <p className="text-sm text-gray-500">
-              2024 – 2027
-            </p>
-          </div>
+<div className="mt-10 bg-white/5 border border-white/10 rounded-xl p-6 hover:shadow-lg hover:border-blue-400/30 transition duration-300">
+
+  <div className="flex justify-between items-start flex-wrap gap-2">
+
+    {/* Degree */}
+    <div>
+      <h4 className="text-white font-semibold text-lg">
+        B.Tech in Computer Science & Engineering
+      </h4>
+      <p className="text-gray-400 text-sm mt-1">
+        Oriental Institute of Science and Technology
+      </p>
+    </div>
+
+    {/* Year Badge */}
+    <span className="text-xs bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full">
+      2024 – 2027
+    </span>
+
+  </div>
+
+</div>
 
         </div>
       </section>
