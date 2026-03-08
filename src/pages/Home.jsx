@@ -1,4 +1,4 @@
-import resume from "../assets/Vivek_Kumar.pdf";
+import resume from "../assets/Vivek_Kumar_RESUME.pdf";
 import profile from "../assets/profile.png";
 
 function Home() {
