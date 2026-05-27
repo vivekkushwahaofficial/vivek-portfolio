@@ -20,7 +20,7 @@ function Projects() {
               title="Legal Aid Matching Platform"
               description="Team-based internship project where I contributed as a Backend Developer in a collaborative Git workflow. Designed and implemented REST APIs, integrated JWT-based authentication, structured PostgreSQL schema design, and followed layered architecture. Managed feature branches, pull requests, and resolved merge conflicts during development."
               tech="Java, Spring Boot, PostgreSQL, JWT, REST APIs, Git"
-              github="#"
+              github="https://github.com/springboardmentor7777/legal-aid-matching-platform-b13/tree/team-two"
             />
 
             {/* Project 2 – Backend CRUD System */}

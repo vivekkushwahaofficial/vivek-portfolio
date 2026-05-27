@@ -46,7 +46,7 @@ function Card({ title, description, tech, github, live }) {
             rel="noopener noreferrer"
             className="text-blue-400 hover:underline"
           >
-            View on GitHub
+            GitHub | My Contribution Branch
           </a>
         )}
 
