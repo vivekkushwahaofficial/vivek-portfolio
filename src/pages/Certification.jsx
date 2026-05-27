@@ -26,6 +26,15 @@ function Certification() {
               link={javaCert}
             />
 
+            {/* Java Certificate */}
+            <CertificationCard
+              title="Programming in Java"
+              provider="NPTEL Elite Certification"
+              duration="Jan–Apr 2026 • 12 Week Course"
+              description="Successfully completed NPTEL Programming in Java certification with 80% score. Covered Core Java, Object-Oriented Programming (OOP), exception handling, collections, and backend development fundamentals."
+              link={javaCert}
+            />
+
             {/* Full Stack Certificate */}
             <CertificationCard
               title="Building Full-Stack Apps with React and Spring"

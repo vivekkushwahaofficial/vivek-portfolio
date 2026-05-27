@@ -22,7 +22,7 @@ function Experience() {
                 JAVA Teck Stack Intern – Infosys Springboard
               </h3>
               <span className="text-sm text-gray-400 mt-2 md:mt-0">
-                Feb 2026 – Present
+                Feb 2026 – Apr 2026
               </span>
             </div>
 

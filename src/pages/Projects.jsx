@@ -25,11 +25,11 @@ function Projects() {
 
             {/* Project 2 – Backend CRUD System */}
             <Card
-              title="Employee Management REST API"
+              title="Employee Management System"
               description="Spring Boot application implementing layered architecture with complete CRUD operations, validation, exception handling, database integration, and Docker-based deployment."
-              tech="Java 17, Spring Boot, Spring Data JPA, Hibernate, MySQL, Docker, Render"
+              tech="Java 17, Spring Boot, Spring Data JPA, Hibernate, PostgreSQL, Docker, Render, Vercel"
               github="https://github.com/Vivekkushwahaofficial/employee-management-system"
-              live="https://employee-management-system-w4lh.onrender.com"
+              live="https://employee-management-system-wnla.vercel.app/"
             />
 
           </div>
