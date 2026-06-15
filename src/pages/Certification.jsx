@@ -1,21 +1,21 @@
 import ScrollReveal from "../components/ScrollReveal";
 import CertificationCard from "../components/CertificationCard";
 import javaCert from "../assets/certificates/java_certification.pdf";
-import fullStackCert from "../assets/certificates/fullstack_certification.pdf"; // ✅ add this file
+import fullStackCert from "../assets/certificates/fullstack_certification.pdf";
 
 function Certification() {
   return (
     <ScrollReveal>
       <section
         id="certifications"
-        className="bg-gray-900 py-20 text-gray-300"
+        className="bg-gray-900 py-20 sm:py-24 text-gray-300"
       >
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-white mb-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-10">
             Certifications
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
             {/* Java Certificate */}
             <CertificationCard

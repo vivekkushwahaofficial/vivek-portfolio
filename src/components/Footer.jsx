@@ -1,11 +1,27 @@
+import { useEffect, useState } from "react";
 import { FaGithub, FaLinkedin, FaEnvelope, FaArrowUp } from "react-icons/fa";
 
 function Footer() {
   const year = new Date().getFullYear();
+  const [isVisible, setIsVisible] = useState(false);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  /* 🔹 Toggle floating button visibility based on scroll depth */
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.scrollY > 300) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
 
   return (
     <footer className="bg-black text-gray-400 py-10 relative">
@@ -53,10 +69,15 @@ function Footer() {
         </div>
       </div>
 
-      {/* Back To Top */}
+      {/* Floating Back To Top Button (Scroll-Aware) */}
       <button
         onClick={scrollToTop}
-        className="absolute right-6 bottom-6 bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 hover:scale-110 transition duration-300"
+        className={`fixed right-6 bottom-6 z-40 bg-blue-500 text-white p-3.5 rounded-full shadow-xl hover:bg-blue-600 cursor-pointer flex items-center justify-center transition-all duration-300 ${
+          isVisible
+            ? "opacity-100 scale-100 translate-y-0"
+            : "opacity-0 scale-75 translate-y-10 pointer-events-none"
+        }`}
+        aria-label="Back to top"
       >
         <FaArrowUp />
       </button>

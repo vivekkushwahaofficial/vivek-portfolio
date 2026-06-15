@@ -12,13 +12,20 @@ function Navbar() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
+        // Fallback: If at the very bottom, force active state to "contact"
+        const isAtBottom = (window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 50;
+        if (isAtBottom) {
+          setActive("contact");
+          return;
+        }
+
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setActive(entry.target.id);
           }
         });
       },
-      { threshold: 0.6 }
+      { threshold: 0.3 }
     );
 
     sections.forEach((id) => {
@@ -29,10 +36,15 @@ function Navbar() {
     return () => observer.disconnect();
   }, []);
 
-  /* 🔹 Shrink Navbar On Scroll */
+  /* 🔹 Shrink Navbar On Scroll & Handle scroll spy bottom updates */
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+
+      const isAtBottom = (window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 50;
+      if (isAtBottom) {
+        setActive("contact");
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -50,7 +62,7 @@ function Navbar() {
       <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
 
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-3 group">
+        <a href="#home" className="flex items-center gap-3 group focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none rounded-lg p-1">
           <img
             src={profile}
             alt="Vivek Kumar"
@@ -69,7 +81,7 @@ function Navbar() {
             <li key={item}>
               <a
                 href={`#${item}`}
-                className={`capitalize transition duration-200 cursor-pointer ${
+                className={`capitalize transition duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none rounded px-2 py-1 ${
                   active === item
                     ? "text-blue-400 border-b-2 border-blue-400 pb-1"
                     : "text-gray-300 hover:text-blue-400"
@@ -83,7 +95,7 @@ function Navbar() {
 
         {/* Hamburger */}
         <button
-          className="md:hidden text-white text-2xl"
+          className="md:hidden text-white text-2xl p-3 -mr-3 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none rounded-lg cursor-pointer transition"
           onClick={() => setOpen(!open)}
           aria-label="Toggle Menu"
         >
@@ -93,13 +105,13 @@ function Navbar() {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="md:hidden bg-black/95 px-6 py-6 space-y-4 text-center">
+        <div className="md:hidden bg-black/95 px-6 py-6 space-y-4 text-center max-h-[calc(100vh-80px)] overflow-y-auto border-t border-white/10">
           {sections.map((item) => (
             <a
               key={item}
               href={`#${item}`}
               onClick={() => setOpen(false)}
-              className={`block capitalize text-lg transition ${
+              className={`block capitalize text-lg transition focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none rounded py-2 ${
                 active === item
                   ? "text-blue-400"
                   : "text-gray-300 hover:text-blue-400"

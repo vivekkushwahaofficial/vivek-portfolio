@@ -6,28 +6,37 @@ function Projects() {
     <ScrollReveal>
       <section
         id="projects"
-        className="bg-gray-900 py-20 text-gray-300"
+        className="bg-gray-800 py-20 sm:py-24 text-gray-300"
       >
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-white mb-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-10">
             Projects
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-            {/* Project 1 – Legal Aid Platform */}
+            {/* Internship Project – Legal Aid Matching Platform */}
             <Card
-              title="Legal Aid Matching Platform"
-              description="Team-based internship project where I contributed as a Backend Developer in a collaborative Git workflow. Designed and implemented REST APIs, integrated JWT-based authentication, structured PostgreSQL schema design, and followed layered architecture. Managed feature branches, pull requests, and resolved merge conflicts during development."
-              tech="Java, Spring Boot, PostgreSQL, JWT, REST APIs, Git"
-              github="https://github.com/springboardmentor7777/legal-aid-matching-platform-b13/tree/team-two"
+              title="Legal Aid Matching Platform (Internship Project)"
+              description="Worked as a Backend Developer in a team-based internship project using Agile development practices. Contributed to REST API development, JWT authentication, PostgreSQL database design, and Spring Boot backend modules. Collaborated through Git workflows, feature branches, pull requests, and code reviews in a multi-developer environment."
+              tech="Java, Spring Boot, PostgreSQL, JWT, REST APIs, Git, Agile"
+              github=""
             />
 
-            {/* Project 2 – Backend CRUD System */}
+            {/* Project 2 – PeerNexus (Collaborative Learning & Messaging Platform) */}
+            <Card
+              title="PeerNexus (Collaborative Learning & Messaging Platform)"
+              description="Full-stack student collaborative learning and messaging platform built using Spring Boot and React. Features real-time chat, typing indicators, and user presence tracking powered by WebSockets. Relational database schema designed with PostgreSQL, secured with JWT-based authentication, and containerized using Docker with Cloudinary integrated for media uploads."
+              tech="Java, Spring Boot, React, PostgreSQL, WebSockets, JWT, Docker, Cloudinary"
+              github="https://github.com/vivekkushwahaofficial/peernexus"
+              live="https://peernexus.vercel.app/"
+            />
+
+            {/* Project 3 – Employee Management System */}
             <Card
               title="Employee Management System"
-              description="Spring Boot application implementing layered architecture with complete CRUD operations, validation, exception handling, database integration, and Docker-based deployment."
-              tech="Java 17, Spring Boot, Spring Data JPA, Hibernate, PostgreSQL, Docker, Render, Vercel"
+              description="Full-stack Employee Management System built using React and Spring Boot. Developed RESTful backend APIs implementing layered architecture (Controller, Service, Repository) with comprehensive CRUD operations. Integrated PostgreSQL with Spring Data JPA for database persistence, and deployed the live application using Render and Vercel."
+              tech="Java, Spring Boot, React, PostgreSQL, Spring Data JPA, Render, Vercel"
               github="https://github.com/Vivekkushwahaofficial/employee-management-system"
               live="https://employee-management-system-wnla.vercel.app/"
             />

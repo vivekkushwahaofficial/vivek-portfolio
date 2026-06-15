@@ -3,11 +3,11 @@ import ScrollReveal from "../components/ScrollReveal";
 function About() {
   return (
     <ScrollReveal>
-      <section id="about" className="bg-gray-800 py-24 text-gray-300">
+      <section id="about" className="bg-gray-800 py-20 sm:py-24 text-gray-300">
         <div className="max-w-4xl mx-auto px-6">
 
           {/* Heading */}
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">
             About Me
           </h2>
 
