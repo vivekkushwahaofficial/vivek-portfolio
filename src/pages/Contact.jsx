@@ -22,7 +22,7 @@ const PROFILE_LINKS = [
   {
     label: "LinkedIn",
     value: "vivekkushwa​haofficial",
-    href: "https://www.linkedin.com/in/vivekkushwaofficial/",
+    href: "https://www.linkedin.com/in/vivekkushwahaofficial/",
     icon: "linkedin",
     external: true,
   },
