@@ -4,6 +4,7 @@ import {
   Check,
   Copy,
   Mail,
+  Send,
 } from "lucide-react";
 import { SiGithub, SiGitlab } from "react-icons/si";
 import { useState } from "react";
@@ -13,22 +14,22 @@ const EMAIL = "vivek39101@gmail.com";
 const PROFILE_LINKS = [
   {
     label: "GitHub",
-    value: "vivekkushwahaofficial",
-    href: "https://github.com/vivekkushwahaofficial",
+    value: "vivekkushwa​haofficial",
+    href: "https://github.com/vivekkushwa​haofficial",
     icon: SiGithub,
     external: true,
   },
   {
     label: "LinkedIn",
-    value: "vivekkushwahaofficial",
-    href: "https://www.linkedin.com/in/vivekkushwahaofficial/",
+    value: "vivekkushwa​haofficial",
+    href: "https://www.linkedin.com/in/vivekkushwa​haofficial/",
     icon: "linkedin",
     external: true,
   },
   {
     label: "GitLab",
-    value: "vivekkushwahaofficial",
-    href: "https://gitlab.com/vivekkushwahaofficial",
+    value: "vivekkushwa​haofficial",
+    href: "https://gitlab.com/vivekkushwa​haofficial",
     icon: SiGitlab,
     external: true,
   },
@@ -41,12 +42,10 @@ const PROFILE_LINKS = [
   },
 ];
 
-/**
- * LinkedIn brand icon.
- *
- * Kept inline intentionally so the portfolio does not depend
- * on a package-specific LinkedIn icon export.
- */
+/* ================================================================
+   LinkedIn Icon
+================================================================ */
+
 function LinkedInIcon({ size = 17 }) {
   return (
     <svg
@@ -62,6 +61,10 @@ function LinkedInIcon({ size = 17 }) {
   );
 }
 
+/* ================================================================
+   Profile Icon
+================================================================ */
+
 function ContactIcon({ icon: Icon }) {
   if (Icon === "linkedin") {
     return <LinkedInIcon size={17} />;
@@ -70,29 +73,26 @@ function ContactIcon({ icon: Icon }) {
   return <Icon size={17} strokeWidth={1.5} />;
 }
 
+/* ================================================================
+   Contact
+================================================================ */
+
 function Contact() {
   const reducedMotion = useReducedMotion();
+
   const [copied, setCopied] = useState(false);
 
-  /**
-   * Copies the email address to the clipboard.
-   *
-   * Falls back to opening the user's email client when
-   * Clipboard API access is unavailable.
-   */
-  const copyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(EMAIL);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
-      setCopied(true);
+  const [submitted, setSubmitted] = useState(false);
 
-      window.setTimeout(() => {
-        setCopied(false);
-      }, 1800);
-    } catch {
-      window.location.href = `mailto:${EMAIL}`;
-    }
-  };
+  /* ==============================================================
+     Animation
+  ============================================================== */
 
   const reveal = {
     initial: {
@@ -107,8 +107,81 @@ function Contact() {
 
     viewport: {
       once: true,
-      amount: 0.2,
+      amount: 0.15,
     },
+  };
+
+  /* ==============================================================
+     Copy Email
+  ============================================================== */
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+
+      setCopied(true);
+
+      window.setTimeout(() => {
+        setCopied(false);
+      }, 1800);
+    } catch {
+      window.location.href = `mailto:${EMAIL}`;
+    }
+  };
+
+  /* ==============================================================
+     Form Change
+  ============================================================== */
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormData((previous) => ({
+      ...previous,
+      [name]: value,
+    }));
+
+    if (submitted) {
+      setSubmitted(false);
+    }
+  };
+
+  /* ==============================================================
+     Form Submit
+  ============================================================== */
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const message = formData.message.trim();
+
+    if (!name || !email || !message) {
+      return;
+    }
+
+    const subject = encodeURIComponent(
+      `Portfolio Contact — ${name}`
+    );
+
+    const body = encodeURIComponent(
+      `Hello Vivek,
+
+Name: ${name}
+Email: ${email}
+
+Message:
+${message}
+
+Sent from your portfolio website.`
+    );
+
+    const mailtoUrl = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
+
+    setSubmitted(true);
+
+    window.location.href = mailtoUrl;
   };
 
   return (
@@ -118,20 +191,17 @@ function Contact() {
       className="relative overflow-hidden border-t border-white/[0.06] bg-[#080b14]"
     >
       {/* ============================================================
-          AMBIENT BACKGROUND
+          BACKGROUND
       ============================================================ */}
 
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
       >
-        {/* Blue ambient glow */}
         <div className="absolute left-[8%] top-[16%] h-72 w-72 rounded-full bg-blue-500/[0.035] blur-3xl" />
 
-        {/* Violet ambient glow */}
         <div className="absolute bottom-[8%] right-[6%] h-80 w-80 rounded-full bg-violet-500/[0.025] blur-3xl" />
 
-        {/* Technical grid */}
         <div
           className="absolute inset-0 opacity-[0.025]"
           style={{
@@ -142,14 +212,11 @@ function Contact() {
         />
       </div>
 
-      {/* ============================================================
-          CONTENT
-      ============================================================ */}
-
       <div className="relative mx-auto max-w-[1440px] px-6 py-24 sm:px-10 sm:py-32 lg:px-16 lg:py-40">
-        {/* ============================================================
+
+        {/* ==========================================================
             SECTION MARKER
-        ============================================================ */}
+        ========================================================== */}
 
         <motion.div
           {...reveal}
@@ -173,12 +240,16 @@ function Contact() {
           </span>
         </motion.div>
 
-        {/* ============================================================
-            MAIN CTA
-        ============================================================ */}
+        {/* ==========================================================
+            HERO + FORM
+        ========================================================== */}
 
-        <div className="grid gap-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:gap-24">
-          {/* Main heading */}
+        <div className="grid gap-16 lg:grid-cols-[1fr_0.72fr] lg:gap-24">
+
+          {/* ========================================================
+              LEFT
+          ======================================================== */}
+
           <div>
             <motion.h2
               id="contact-heading"
@@ -209,28 +280,24 @@ function Contact() {
               backend systems, developer tools and
               AI-powered applications.
             </motion.p>
-          </div>
 
-          {/* ========================================================
-              EMAIL CTA
-          ======================================================== */}
+            {/* Direct email */}
 
-          <motion.div
-            {...reveal}
-            transition={{
-              duration: 0.7,
-              delay: 0.25,
-              ease: "easeOut",
-            }}
-            className="lg:pb-2"
-          >
-            <div className="border-y border-white/[0.08] py-6">
+            <motion.div
+              {...reveal}
+              transition={{
+                duration: 0.7,
+                delay: 0.26,
+                ease: "easeOut",
+              }}
+              className="mt-12 border-y border-white/[0.08] py-6"
+            >
               <p className="mb-3 text-[10px] uppercase tracking-[0.25em] text-slate-600">
-                Best way to reach me
+                Prefer email?
               </p>
 
               <div className="flex flex-wrap items-center gap-3">
-                {/* Email link */}
+
                 <a
                   href={`mailto:${EMAIL}`}
                   className="group inline-flex min-w-0 items-center gap-3 text-lg text-slate-200 transition-colors duration-300 hover:text-white sm:text-xl"
@@ -253,23 +320,18 @@ function Contact() {
                   />
                 </a>
 
-                {/* Copy email */}
                 <motion.button
                   type="button"
                   onClick={copyEmail}
                   whileHover={
                     reducedMotion
                       ? undefined
-                      : {
-                        scale: 1.05,
-                      }
+                      : { scale: 1.05 }
                   }
                   whileTap={
                     reducedMotion
                       ? undefined
-                      : {
-                        scale: 0.95,
-                      }
+                      : { scale: 0.95 }
                   }
                   aria-label={
                     copied
@@ -292,24 +354,168 @@ function Contact() {
                 </motion.button>
               </div>
 
-              {/* Clipboard status */}
               <p
                 className={`mt-3 text-xs transition-opacity duration-300 ${copied
                     ? "text-blue-400 opacity-100"
                     : "pointer-events-none opacity-0"
                   }`}
                 aria-live="polite"
-                aria-hidden={!copied}
               >
                 Email copied to clipboard
               </p>
-            </div>
+            </motion.div>
+          </div>
+
+          {/* ========================================================
+              CONTACT FORM
+          ======================================================== */}
+
+          <motion.div
+            {...reveal}
+            transition={{
+              duration: 0.7,
+              delay: 0.2,
+              ease: "easeOut",
+            }}
+          >
+            <form
+              onSubmit={handleSubmit}
+              className="relative rounded-2xl border border-white/[0.08] bg-[#0a0f1b]/80 p-6 shadow-[0_25px_80px_rgba(0,0,0,0.18)] sm:p-8"
+            >
+              {/* subtle top accent */}
+
+              <div
+                aria-hidden="true"
+                className="absolute left-6 right-6 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/50 to-transparent"
+              />
+
+              <div className="mb-8">
+                <p className="text-[10px] uppercase tracking-[0.25em] text-blue-400">
+                  Start a conversation
+                </p>
+
+                <h3 className="mt-3 text-2xl font-medium tracking-tight text-white">
+                  Send me a message.
+                </h3>
+
+                <p className="mt-2 text-sm leading-6 text-slate-500">
+                  Tell me what you&apos;re building, what you&apos;re
+                  looking for, or how we can work together.
+                </p>
+              </div>
+
+              <div className="space-y-5">
+
+                {/* Name */}
+
+                <div>
+                  <label
+                    htmlFor="contact-name"
+                    className="mb-2 block text-xs font-medium text-slate-400"
+                  >
+                    Name
+                  </label>
+
+                  <input
+                    id="contact-name"
+                    name="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Your name"
+                    autoComplete="name"
+                    required
+                    className="w-full rounded-xl border border-white/[0.08] bg-[#070b14] px-4 py-3.5 text-sm text-white placeholder:text-slate-700 outline-none transition-all duration-300 hover:border-white/[0.14] focus:border-blue-400/40 focus:bg-[#090f1b] focus:ring-2 focus:ring-blue-400/[0.08]"
+                  />
+                </div>
+
+                {/* Email */}
+
+                <div>
+                  <label
+                    htmlFor="contact-email"
+                    className="mb-2 block text-xs font-medium text-slate-400"
+                  >
+                    Email
+                  </label>
+
+                  <input
+                    id="contact-email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="you@example.com"
+                    autoComplete="email"
+                    required
+                    className="w-full rounded-xl border border-white/[0.08] bg-[#070b14] px-4 py-3.5 text-sm text-white placeholder:text-slate-700 outline-none transition-all duration-300 hover:border-white/[0.14] focus:border-blue-400/40 focus:bg-[#090f1b] focus:ring-2 focus:ring-blue-400/[0.08]"
+                  />
+                </div>
+
+                {/* Message */}
+
+                <div>
+                  <label
+                    htmlFor="contact-message"
+                    className="mb-2 block text-xs font-medium text-slate-400"
+                  >
+                    Message
+                  </label>
+
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Tell me about your project or opportunity..."
+                    rows={5}
+                    required
+                    className="w-full resize-none rounded-xl border border-white/[0.08] bg-[#070b14] px-4 py-3.5 text-sm leading-6 text-white placeholder:text-slate-700 outline-none transition-all duration-300 hover:border-white/[0.14] focus:border-blue-400/40 focus:bg-[#090f1b] focus:ring-2 focus:ring-blue-400/[0.08]"
+                  />
+                </div>
+
+                {/* Submit */}
+
+                <motion.button
+                  type="submit"
+                  whileHover={
+                    reducedMotion
+                      ? undefined
+                      : {
+                        y: -2,
+                      }
+                  }
+                  whileTap={
+                    reducedMotion
+                      ? undefined
+                      : {
+                        scale: 0.98,
+                      }
+                  }
+                  className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white px-5 py-3.5 text-sm font-medium text-slate-950 transition-colors duration-300 hover:bg-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60"
+                >
+                  {submitted
+                    ? "Opening email client..."
+                    : "Send Message"}
+
+                  <Send
+                    size={16}
+                    strokeWidth={1.8}
+                    className="transition-transform duration-300 group-hover:translate-x-1"
+                  />
+                </motion.button>
+
+                <p className="text-center text-[11px] leading-5 text-slate-600">
+                  Submitting opens your default email client.
+                </p>
+              </div>
+            </form>
           </motion.div>
         </div>
 
-        {/* ============================================================
-            PROFESSIONAL PROFILES
-        ============================================================ */}
+        {/* ==========================================================
+            PROFESSIONAL LINKS
+        ========================================================== */}
 
         <motion.div
           {...reveal}
@@ -321,61 +527,57 @@ function Contact() {
           className="mt-20 border-t border-white/[0.08]"
         >
           <div className="grid sm:grid-cols-2 lg:grid-cols-4">
-            {PROFILE_LINKS.map((link, index) => {
-              return (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target={
-                    link.external ? "_blank" : undefined
-                  }
-                  rel={
-                    link.external
-                      ? "noopener noreferrer"
-                      : undefined
-                  }
-                  className={`group relative flex min-h-32 items-center justify-between border-b border-white/[0.08] py-7 transition-colors duration-300 hover:bg-white/[0.018] focus:outline-none focus-visible:bg-white/[0.025] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-400/50 sm:px-5 lg:min-h-36 ${index < PROFILE_LINKS.length - 1
-                      ? "lg:border-r lg:border-white/[0.08]"
-                      : ""
-                    }`}
-                  aria-label={`${link.label}: ${link.value}${link.external
-                      ? " (opens in a new tab)"
-                      : ""
-                    }`}
-                >
-                  <div className="flex min-w-0 items-center gap-4">
-                    {/* Icon */}
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/[0.08] text-slate-500 transition-all duration-300 group-hover:border-blue-400/30 group-hover:bg-blue-400/[0.04] group-hover:text-blue-300">
-                      <ContactIcon icon={link.icon} />
-                    </span>
+            {PROFILE_LINKS.map((link, index) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target={
+                  link.external ? "_blank" : undefined
+                }
+                rel={
+                  link.external
+                    ? "noopener noreferrer"
+                    : undefined
+                }
+                className={`group relative flex min-h-32 items-center justify-between border-b border-white/[0.08] py-7 transition-colors duration-300 hover:bg-white/[0.018] focus:outline-none focus-visible:bg-white/[0.025] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-400/50 sm:px-5 lg:min-h-36 ${index < PROFILE_LINKS.length - 1
+                    ? "lg:border-r lg:border-white/[0.08]"
+                    : ""
+                  }`}
+                aria-label={`${link.label}: ${link.value}${link.external
+                    ? " (opens in a new tab)"
+                    : ""
+                  }`}
+              >
+                <div className="flex min-w-0 items-center gap-4">
 
-                    {/* Text */}
-                    <div className="min-w-0">
-                      <p className="text-[10px] uppercase tracking-[0.22em] text-slate-600">
-                        {link.label}
-                      </p>
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/[0.08] text-slate-500 transition-all duration-300 group-hover:border-blue-400/30 group-hover:bg-blue-400/[0.04] group-hover:text-blue-300">
+                    <ContactIcon icon={link.icon} />
+                  </span>
 
-                      <p className="mt-1 max-w-[190px] truncate text-sm text-slate-300 transition-colors duration-300 group-hover:text-white">
-                        {link.value}
-                      </p>
-                    </div>
+                  <div className="min-w-0">
+                    <p className="text-[10px] uppercase tracking-[0.22em] text-slate-600">
+                      {link.label}
+                    </p>
+
+                    <p className="mt-1 max-w-[190px] truncate text-sm text-slate-300 transition-colors duration-300 group-hover:text-white">
+                      {link.value}
+                    </p>
                   </div>
+                </div>
 
-                  {/* Arrow */}
-                  <ArrowUpRight
-                    size={18}
-                    strokeWidth={1.5}
-                    className="ml-4 shrink-0 text-slate-600 transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-blue-300"
-                  />
-                </a>
-              );
-            })}
+                <ArrowUpRight
+                  size={18}
+                  strokeWidth={1.5}
+                  className="ml-4 shrink-0 text-slate-600 transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-blue-300"
+                />
+              </a>
+            ))}
           </div>
         </motion.div>
 
-        {/* ============================================================
-            CLOSING STATUS
-        ============================================================ */}
+        {/* ==========================================================
+            FOOTER STATUS
+        ========================================================== */}
 
         <motion.div
           {...reveal}
