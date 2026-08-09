@@ -28,8 +28,7 @@ function Home() {
   return (
     <section
       id="home"
-      className="relative isolate min-h-screen overflow-hidden bg-[#0a0f1c] text-white"
-    >
+      className="relative isolate min-h-[100svh] overflow-hidden bg-[#0a0f1c] text-white"    >
       {/* Background grid */}
       <div
         aria-hidden="true"
@@ -47,7 +46,7 @@ function Home() {
         className="pointer-events-none absolute left-1/4 top-1/4 h-80 w-80 rounded-full bg-blue-500/10 blur-[120px]"
       />
 
-      <div className="relative mx-auto flex min-h-screen max-w-7xl items-center px-6 pb-16 pt-28 sm:px-8 lg:px-10">
+      <div className="relative mx-auto flex min-h-[calc(100svh-1rem)] max-w-7xl items-center px-6 pb-6 pt-20 sm:px-8 lg:px-10">
         <div className="grid w-full items-center gap-14 lg:grid-cols-[1.05fr_.95fr] lg:gap-8">
           {/* Left content */}
           <motion.div
@@ -121,7 +120,7 @@ function Home() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.65, duration: 0.6 }}
-              className="mt-9 flex flex-wrap gap-3"
+              className="mt-7 flex flex-wrap gap-3"
             >
               <a
                 href="#projects"
@@ -167,7 +166,7 @@ function Home() {
             initial={{ opacity: 0, scale: 0.94, x: 20 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ delay: 0.35, duration: 0.8, ease: "easeOut" }}
-            className="relative mx-auto w-full max-w-[620px]"
+            className="relative mx-auto w-full max-w-[500px]"
           >
             <HeroNetwork />
           </motion.div>
