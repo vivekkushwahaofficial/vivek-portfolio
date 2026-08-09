@@ -1,8 +1,6 @@
-// Global Components
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-// Pages (Main Sections)
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Skills from "./pages/Skills";
@@ -13,12 +11,10 @@ import Certification from "./pages/Certification";
 
 function App() {
   return (
-    <div className="bg-gray-900 text-gray-200">
-      {/* Header */}
+    <div className="min-h-screen bg-[#050505] text-white">
       <Navbar />
 
-      {/* Main Content */}
-      <main className="pt-20">
+      <main>
         <Home />
         <About />
         <Skills />
@@ -28,7 +24,6 @@ function App() {
         <Contact />
       </main>
 
-      {/* Footer */}
       <Footer />
     </div>
   );
