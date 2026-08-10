@@ -46,14 +46,10 @@ const stats: Stat[] = [
 function About() {
   const statsRef = useRef<HTMLDivElement | null>(null);
   const [started, setStarted] = useState(false);
-  const [counts, setCounts] = useState<number[]>(
+  const [counts, setCounts] = useState<number[]>(() =>
     stats.map(() => 0)
   );
 
-  /*
-   * Start the statistic animation only when the
-   * statistics section enters the viewport.
-   */
   useEffect(() => {
     const element = statsRef.current;
 
@@ -78,9 +74,6 @@ function About() {
     return () => observer.disconnect();
   }, []);
 
-  /*
-   * Animate each statistic from 0 to its real value.
-   */
   useEffect(() => {
     if (!started) {
       return;
@@ -88,6 +81,7 @@ function About() {
 
     const duration = 900;
     const startTime = performance.now();
+    let animationFrame = 0;
 
     const animate = (currentTime: number) => {
       const progress = Math.min(
@@ -95,8 +89,7 @@ function About() {
         1
       );
 
-      const easedProgress =
-        1 - Math.pow(1 - progress, 3);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
 
       setCounts(
         stats.map((stat) =>
@@ -105,52 +98,61 @@ function About() {
       );
 
       if (progress < 1) {
-        requestAnimationFrame(animate);
+        animationFrame = requestAnimationFrame(animate);
       }
     };
 
-    requestAnimationFrame(animate);
+    animationFrame = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationFrame);
   }, [started]);
 
   return (
     <ScrollReveal>
       <section
         id="about"
+        aria-labelledby="about-heading"
         className="
           relative
           overflow-hidden
-          px-6
-          py-24
-          sm:px-10
-          lg:px-16
-          xl:px-20
+          px-5
+          py-16
+          sm:px-6
+          sm:py-20
+          lg:px-10
+          lg:py-28
+          xl:px-16
         "
       >
         <div className="mx-auto max-w-7xl">
-
-          {/* Section Header */}
-          <div className="mb-14 flex items-center gap-4">
-            <span className="font-mono text-sm text-blue-400">
+          {/* Section header */}
+          <div className="mb-10 flex items-center gap-3 sm:mb-12 sm:gap-4">
+            <span className="font-mono text-xs text-blue-400 sm:text-sm">
               01
             </span>
 
-            <div className="h-px w-12 bg-blue-500/40" />
+            <span
+              aria-hidden="true"
+              className="h-px w-8 bg-blue-500/40 sm:w-12"
+            />
 
-            <span className="text-sm uppercase tracking-[0.25em] text-gray-500">
+            <h2
+              id="about-heading"
+              className="text-xs uppercase tracking-[0.22em] text-gray-500 sm:text-sm sm:tracking-[0.25em]"
+            >
               About
-            </span>
+            </h2>
           </div>
 
-          {/* Main Content */}
-          <div className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-
-            {/* Left — Focus Areas */}
+          {/* Main content */}
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:gap-16">
+            {/* Focus areas */}
             <div>
-              <p className="mb-6 text-sm uppercase tracking-[0.2em] text-gray-500">
+              <p className="mb-4 text-xs uppercase tracking-[0.2em] text-gray-500 sm:mb-6 sm:text-sm">
                 What I focus on
               </p>
 
-              <div className="space-y-1">
+              <div>
                 {focusAreas.map((area, index) => (
                   <div
                     key={area}
@@ -158,35 +160,39 @@ function About() {
                       group
                       flex
                       items-center
-                      gap-4
+                      gap-3
                       border-b
                       border-white/5
-                      py-4
+                      py-3
                       transition-colors
                       duration-300
                       hover:border-blue-400/30
+                      sm:gap-4
+                      sm:py-4
                     "
                   >
-                    <span className="font-mono text-xs text-gray-600">
+                    <span className="shrink-0 font-mono text-[10px] text-gray-600 sm:text-xs">
                       0{index + 1}
                     </span>
 
                     <span
                       className="
-                        text-lg
+                        text-sm
                         text-gray-300
                         transition-colors
                         duration-300
                         group-hover:text-white
+                        sm:text-lg
                       "
                     >
                       {area}
                     </span>
 
                     <span
+                      aria-hidden="true"
                       className="
                         ml-auto
-                        translate-x-[-8px]
+                        translate-x-[-6px]
                         text-blue-400
                         opacity-0
                         transition-all
@@ -202,25 +208,25 @@ function About() {
               </div>
             </div>
 
-            {/* Right — Story */}
+            {/* Story */}
             <div>
               <p
                 className="
                   max-w-3xl
-                  text-2xl
+                  text-xl
                   font-medium
-                  leading-relaxed
+                  leading-[1.4]
                   tracking-tight
                   text-white
-                  sm:text-3xl
+                  sm:text-2xl
+                  lg:text-3xl
                 "
               >
                 I build software by turning real problems
                 into reliable, maintainable systems.
               </p>
 
-              <div className="mt-8 space-y-6 text-base leading-8 text-gray-400 sm:text-lg">
-
+              <div className="mt-6 space-y-4 text-sm leading-7 text-gray-400 sm:mt-8 sm:space-y-5 sm:text-base sm:leading-8 lg:text-lg">
                 <p>
                   I focus on backend development with{" "}
                   <span className="text-blue-400">
@@ -252,18 +258,19 @@ function About() {
                 </p>
               </div>
 
-              {/* Technology Line */}
-              <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3">
+              {/* Technology line */}
+              <div className="mt-7 flex flex-wrap gap-x-4 gap-y-2 sm:mt-9 sm:gap-x-6 sm:gap-y-3">
                 {technologies.map((technology) => (
                   <span
                     key={technology}
                     className="
                       font-mono
-                      text-xs
+                      text-[10px]
                       text-gray-500
                       transition-colors
                       duration-300
                       hover:text-blue-400
+                      sm:text-xs
                     "
                   >
                     {technology}
@@ -277,33 +284,39 @@ function About() {
           <div
             ref={statsRef}
             className="
-              mt-20
+              mt-12
               border-y
               border-white/10
-              py-10
+              py-7
+              sm:mt-16
+              sm:py-9
+              lg:mt-20
+              lg:py-10
             "
           >
-            <div className="grid grid-cols-2 gap-y-10 sm:grid-cols-4">
-
+            <div className="grid grid-cols-2 sm:grid-cols-4">
               {stats.map((stat, index) => (
                 <div
                   key={stat.label}
                   className="
                     relative
-                    px-4
-                    sm:px-8
-                    first:sm:pl-0
+                    px-3
+                    py-2
+                    sm:px-6
+                    sm:py-0
+                    lg:px-8
+                    lg:first:pl-0
                   "
                 >
-                  {/* Vertical separator */}
                   {index > 0 && (
-                    <div
+                    <span
+                      aria-hidden="true"
                       className="
                         absolute
                         left-0
                         top-1/2
                         hidden
-                        h-12
+                        h-10
                         w-px
                         -translate-y-1/2
                         bg-white/10
@@ -315,11 +328,12 @@ function About() {
                   <div
                     className="
                       font-mono
-                      text-4xl
+                      text-3xl
                       font-medium
                       tracking-tight
                       text-white
-                      sm:text-5xl
+                      sm:text-4xl
+                      lg:text-5xl
                     "
                   >
                     {counts[index]}
@@ -328,21 +342,31 @@ function About() {
                     </span>
                   </div>
 
-                  <p className="mt-2 text-sm text-gray-500">
+                  <p className="mt-1.5 text-xs text-gray-500 sm:mt-2 sm:text-sm">
                     {stat.label}
                   </p>
                 </div>
               ))}
 
               {/* Continuous learning */}
-              <div className="relative px-4 sm:px-8">
-                <div
+              <div
+                className="
+                  relative
+                  px-3
+                  py-2
+                  sm:px-6
+                  sm:py-0
+                  lg:px-8
+                "
+              >
+                <span
+                  aria-hidden="true"
                   className="
                     absolute
                     left-0
                     top-1/2
                     hidden
-                    h-12
+                    h-10
                     w-px
                     -translate-y-1/2
                     bg-white/10
@@ -353,17 +377,18 @@ function About() {
                 <div
                   className="
                     font-mono
-                    text-4xl
+                    text-3xl
                     font-medium
                     tracking-tight
                     text-white
-                    sm:text-5xl
+                    sm:text-4xl
+                    lg:text-5xl
                   "
                 >
                   ∞
                 </div>
 
-                <p className="mt-2 text-sm text-gray-500">
+                <p className="mt-1.5 text-xs text-gray-500 sm:mt-2 sm:text-sm">
                   Learning
                 </p>
               </div>
@@ -373,33 +398,37 @@ function About() {
           {/* Education */}
           <div
             className="
-              mt-14
+              mt-10
               flex
               flex-col
-              gap-5
+              gap-4
               border
               border-white/10
               bg-white/[0.02]
-              p-6
+              p-5
               transition-colors
               duration-300
               hover:border-blue-400/20
-              sm:flex-row
-              sm:items-center
-              sm:justify-between
-              sm:p-8
+              sm:mt-12
+              sm:gap-5
+              sm:p-6
+              lg:mt-14
+              lg:flex-row
+              lg:items-center
+              lg:justify-between
+              lg:p-8
             "
           >
             <div>
-              <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-gray-600">
+              <p className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-gray-600 sm:mb-2 sm:text-xs">
                 Education
               </p>
 
-              <h3 className="text-lg font-medium text-white sm:text-xl">
-                B.Tech in Computer Science & Engineering
+              <h3 className="text-base font-medium text-white sm:text-lg lg:text-xl">
+                B.Tech in Computer Science &amp; Engineering
               </h3>
 
-              <p className="mt-2 text-sm text-gray-500">
+              <p className="mt-1.5 text-xs text-gray-500 sm:mt-2 sm:text-sm">
                 Oriental Institute of Science and Technology
               </p>
             </div>
@@ -413,8 +442,9 @@ function About() {
                 px-3
                 py-1.5
                 font-mono
-                text-xs
+                text-[10px]
                 text-blue-400
+                sm:text-xs
               "
             >
               2024 — 2027

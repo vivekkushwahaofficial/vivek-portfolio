@@ -3,10 +3,7 @@ import {
   ArrowRight,
   ArrowUpRight,
   Bot,
-  Braces,
-  Container,
   Database,
-  GitBranch,
   Server,
   Workflow,
 } from "lucide-react";
@@ -28,7 +25,9 @@ function Home() {
   return (
     <section
       id="home"
-      className="relative isolate min-h-[100svh] overflow-hidden bg-[#0a0f1c] text-white"    >
+      className="relative overflow-hidden"
+      aria-labelledby="hero-heading"
+    >
       {/* Background grid */}
       <div
         aria-hidden="true"
@@ -40,14 +39,15 @@ function Home() {
         }}
       />
 
-      {/* Subtle ambient glow */}
+      {/* Ambient glow */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/4 top-1/4 h-80 w-80 rounded-full bg-blue-500/10 blur-[120px]"
+        className="pointer-events-none absolute left-1/4 top-1/4 h-64 w-64 rounded-full bg-blue-500/10 blur-[100px] sm:h-80 sm:w-80 sm:blur-[120px]"
       />
 
-      <div className="relative mx-auto flex min-h-[calc(100svh-1rem)] max-w-7xl items-center px-6 pb-6 pt-20 sm:px-8 lg:px-10">
-        <div className="grid w-full items-center gap-14 lg:grid-cols-[1.05fr_.95fr] lg:gap-8">
+      {/* Hero content */}
+      <div className="relative mx-auto flex max-w-7xl items-center px-5 pb-12 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:min-h-[calc(100svh-1rem)] lg:px-10 lg:py-20">
+        <div className="grid w-full items-center gap-6 sm:gap-8 lg:grid-cols-[1.05fr_.95fr] lg:gap-8">
           {/* Left content */}
           <motion.div
             initial={{ opacity: 0, y: 28 }}
@@ -60,7 +60,7 @@ function Home() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15, duration: 0.5 }}
-              className="mb-7 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/[0.06] px-3.5 py-1.5 text-sm text-emerald-300"
+              className="mb-5 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/[0.06] px-3 py-1.5 text-xs text-emerald-300 sm:mb-6 sm:px-3.5 sm:text-sm"
             >
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
@@ -72,10 +72,11 @@ function Home() {
 
             {/* Heading */}
             <motion.h1
+              id="hero-heading"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.25, duration: 0.65 }}
-              className="max-w-3xl text-5xl font-semibold tracking-[-0.04em] sm:text-6xl lg:text-7xl"
+              className="max-w-3xl text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl sm:leading-[1.05] lg:text-7xl"
             >
               Software Engineer
               <span className="mt-2 block bg-gradient-to-r from-white via-white to-slate-400 bg-clip-text text-transparent">
@@ -88,7 +89,7 @@ function Home() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="mt-7 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg"
+              className="mt-5 max-w-2xl text-sm leading-6 text-slate-400 sm:mt-6 sm:text-base sm:leading-7 lg:text-lg"
             >
               Building scalable backend systems, developer tools and
               AI-powered applications with a focus on clean architecture,
@@ -100,7 +101,7 @@ function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.55, duration: 0.6 }}
-              className="mt-7 flex max-w-2xl flex-wrap gap-x-5 gap-y-2 text-sm text-slate-500"
+              className="mt-5 flex max-w-2xl flex-wrap gap-x-3 gap-y-1.5 text-xs text-slate-500 sm:mt-6 sm:gap-x-4 sm:gap-y-2 sm:text-sm"
             >
               {technologies.map((technology, index) => (
                 <span key={technology} className="flex items-center gap-2">
@@ -110,6 +111,7 @@ function Home() {
                       className="h-1 w-1 rounded-full bg-slate-700"
                     />
                   )}
+
                   {technology}
                 </span>
               ))}
@@ -120,41 +122,52 @@ function Home() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.65, duration: 0.6 }}
-              className="mt-7 flex flex-wrap gap-3"
+              className="mt-6 flex flex-wrap gap-2.5 sm:mt-7 sm:gap-3"
             >
+              {/* Projects */}
               <a
                 href="#projects"
-                className="group inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-medium text-slate-950 transition duration-200 hover:-translate-y-0.5 hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+                className="group inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-sm font-medium text-slate-950 transition duration-200 hover:-translate-y-0.5 hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 sm:px-5 sm:py-3"
               >
                 Explore projects
+
                 <ArrowRight
                   size={16}
+                  aria-hidden="true"
                   className="transition-transform duration-200 group-hover:translate-x-1"
                 />
               </a>
 
+              {/* GitHub */}
               <a
                 href="https://github.com/Vivekkushwahaofficial"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-900/40 px-5 py-3 text-sm font-medium text-slate-200 transition duration-200 hover:-translate-y-0.5 hover:border-slate-500 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+                aria-label="Visit Vivek's GitHub profile"
+                className="group inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-900/40 px-4 py-2.5 text-sm font-medium text-slate-200 transition duration-200 hover:-translate-y-0.5 hover:border-slate-500 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 sm:px-5 sm:py-3"
               >
                 GitHub
+
                 <ArrowUpRight
                   size={16}
+                  aria-hidden="true"
                   className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 />
               </a>
 
+              {/* Resume */}
               <a
                 href={resume}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 rounded-lg border border-slate-800 px-5 py-3 text-sm font-medium text-slate-400 transition duration-200 hover:border-slate-600 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+                aria-label="Open Vivek's resume"
+                className="group inline-flex items-center gap-2 rounded-lg border border-slate-800 px-4 py-2.5 text-sm font-medium text-slate-400 transition duration-200 hover:border-slate-600 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 sm:px-5 sm:py-3"
               >
                 Resume
+
                 <ArrowUpRight
                   size={16}
+                  aria-hidden="true"
                   className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 />
               </a>
@@ -165,15 +178,19 @@ function Home() {
           <motion.div
             initial={{ opacity: 0, scale: 0.94, x: 20 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ delay: 0.35, duration: 0.8, ease: "easeOut" }}
-            className="relative mx-auto w-full max-w-[500px]"
+            transition={{
+              delay: 0.35,
+              duration: 0.8,
+              ease: "easeOut",
+            }}
+            className="relative mx-auto w-full max-w-[360px] sm:max-w-[420px] lg:max-w-[500px]"
           >
             <HeroNetwork />
           </motion.div>
         </div>
       </div>
 
-      {/* Bottom technical labels */}
+      {/* Desktop technical labels */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -181,28 +198,28 @@ function Home() {
         className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-4 text-xs text-slate-600 lg:flex"
       >
         <span className="flex items-center gap-1.5">
-          <Server size={13} />
+          <Server size={13} aria-hidden="true" />
           Backend
         </span>
 
         <span className="h-px w-8 bg-slate-800" />
 
         <span className="flex items-center gap-1.5">
-          <Workflow size={13} />
+          <Workflow size={13} aria-hidden="true" />
           APIs
         </span>
 
         <span className="h-px w-8 bg-slate-800" />
 
         <span className="flex items-center gap-1.5">
-          <Database size={13} />
+          <Database size={13} aria-hidden="true" />
           Data
         </span>
 
         <span className="h-px w-8 bg-slate-800" />
 
         <span className="flex items-center gap-1.5">
-          <Bot size={13} />
+          <Bot size={13} aria-hidden="true" />
           AI
         </span>
       </motion.div>

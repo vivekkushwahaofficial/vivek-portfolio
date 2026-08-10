@@ -2,46 +2,119 @@
 <html lang="en">
 
 <head>
-  <!-- Basic Meta -->
+  <!-- =====================================================
+         Basic document metadata
+         ====================================================== -->
+
   <meta charset="UTF-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Title -->
-  <title>Vivek Kumar | Java Backend Developer</title>
+  <meta name="theme-color" content="#05070b" />
 
-  <!-- SEO Description -->
+  <meta name="color-scheme" content="dark" />
+
+  <!-- =====================================================
+         Primary SEO
+         ====================================================== -->
+
+  <title>
+    Vivek Kumar | Software Engineer
+  </title>
+
   <meta name="description"
-    content="Vivek Kumar is a Java Backend Developer specializing in Spring Boot, REST APIs, PostgreSQL, JWT authentication, and scalable backend systems. Explore projects, internship experience, and contact details." />
+    content="Vivek Kumar is a Computer Science student focused on software engineering, backend development, Java, Spring Boot, AI-powered applications, and modern full-stack systems." />
 
-  <!-- SEO Keywords -->
-  <meta name="keywords"
-    content="Vivek Kumar, Java Backend Developer, Spring Boot Developer, REST API Developer, PostgreSQL Developer, Backend Engineer Portfolio" />
-
-  <!-- Author -->
   <meta name="author" content="Vivek Kumar" />
 
-  <!-- Open Graph (LinkedIn / WhatsApp Preview) -->
-  <meta property="og:title" content="Vivek Kumar | Java Backend Developer" />
-  <meta property="og:description"
-    content="Backend-focused developer building scalable systems using Spring Boot and PostgreSQL." />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="canonical" href="https://vivekkushwahaofficial.tech/" />
+
+  <!-- =====================================================
+         Open Graph
+         Used by LinkedIn, WhatsApp, Facebook, etc.
+         ====================================================== -->
+
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://your-portfolio-link.vercel.app/" />
-  <meta property="og:image" content="/profile.png" />
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Vivek Kumar | Java Backend Developer" />
+  <meta property="og:title" content="Vivek Kumar | Software Engineer" />
+
+  <meta property="og:description"
+    content="Software engineer focused on backend systems, developer tools, and AI-powered applications." />
+
+  <meta property="og:url" content="https://vivekkushwahaofficial.tech/" />
+
+  <meta property="og:site_name" content="Vivek Kumar" />
+
+  <meta property="og:locale" content="en_IN" />
+
+  <!--
+      Add an og:image here only after you have a real
+      production social-preview image in /public.
+    -->
+
+  <!-- =====================================================
+         Twitter / X
+         ====================================================== -->
+
+  <meta name="twitter:card" content="summary" />
+
+  <meta name="twitter:title" content="Vivek Kumar | Software Engineer" />
+
   <meta name="twitter:description"
-    content="Java Backend Developer specializing in Spring Boot, REST APIs, and scalable application architecture." />
-  <meta name="twitter:image" content="/profile.png" />
+    content="Software engineer focused on backend systems, developer tools, and AI-powered applications." />
 
-  <!-- Favicon -->
+  <!-- =====================================================
+         Favicon
+         ====================================================== -->
+
   <link rel="icon" type="image/x-icon" href="/src/assets/favicon.ico" />
+
+  <!-- =====================================================
+         Performance hints
+         ====================================================== -->
+
+  <meta name="format-detection" content="telephone=no" />
+
+  <!-- =====================================================
+         Structured data
+         Helps search engines understand the portfolio.
+         ====================================================== -->
+
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Vivek Kumar",
+        "url": "https://vivekkushwahaofficial.tech/",
+        "jobTitle": "Software Engineer",
+        "sameAs": [
+          "https://github.com/Vivekkushwahaofficial",
+          "https://www.linkedin.com/in/vivekkushwahaofficial/"
+        ],
+        "knowsAbout": [
+          "Java",
+          "Spring Boot",
+          "Backend Development",
+          "REST APIs",
+          "PostgreSQL",
+          "React",
+          "TypeScript",
+          "Docker",
+          "Artificial Intelligence",
+          "Software Engineering"
+        ]
+      }
+    </script>
 </head>
 
 <body>
+  <!-- React application root -->
   <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
+
+  <!-- Vite / React entry point -->
+  <script type="module" src="/src/main.tsx"></script>
 </body>
 
 </html>

@@ -5,27 +5,36 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Skills from "./pages/Skills";
 import Experience from "./pages/Experience";
+import Certification from "./pages/Certification";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
-import Certification from "./pages/Certification";
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#050505] text-white">
+    <>
+      {/* Fixed site navigation */}
       <Navbar />
 
-      <main>
+      {/* Main portfolio content */}
+      <main id="main-content">
         <Home />
+
         <About />
+
         <Skills />
+
         <Experience />
+
         <Certification />
+
         <Projects />
+
         <Contact />
       </main>
 
+      {/* Site footer */}
       <Footer />
-    </div>
+    </>
   );
 }
 
