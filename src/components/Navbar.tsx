@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import profileImage from "../assets/profile.png";
 import {
   AnimatePresence,
   motion,
@@ -218,24 +219,54 @@ function Navbar() {
 
           <a
             href="#home"
-            onClick={(event) =>
-              handleNavigation(event, "home")
-            }
+            onClick={(event) => handleNavigation(event, "home")}
             className="group flex shrink-0 items-center gap-2 rounded-lg px-1 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 sm:gap-3"
             aria-label="Vivek Kumar — Home"
           >
-            <span className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-white/[0.04]">
-              <span className="text-sm font-bold tracking-tight text-white">
-                V
-              </span>
+            {/* Profile image */}
+            <div
+              className="
+    relative flex h-8 w-8 shrink-0
+    items-center justify-center
+    overflow-hidden rounded-lg
+    border border-slate-700/80
+    bg-slate-900
+    transition-all duration-300
+    group-hover:border-cyan-400/40
+    group-hover:shadow-[0_0_18px_rgba(34,211,238,0.12)]
+    sm:h-9 sm:w-9 sm:rounded-xl
+  "
 
+            >
+              <img
+                src={profileImage}
+                alt="Vivek Kumar"
+                className="
+        h-full w-full
+        object-cover
+        transition-transform duration-300
+        group-hover:scale-105
+      "
+              />
+
+              {/* Subtle brand accent */}
               <span
                 aria-hidden="true"
-                className="absolute inset-x-2 bottom-1 h-px bg-gradient-to-r from-cyan-400 to-blue-500 opacity-70 transition-transform duration-300 group-hover:scale-x-125"
+                className="
+        pointer-events-none absolute
+        inset-x-2 bottom-0.5
+        h-px
+        bg-gradient-to-r
+        from-transparent
+        via-cyan-400
+        to-transparent
+        opacity-70
+      "
               />
-            </span>
+            </div>
 
-            <span className="hidden text-sm font-semibold tracking-[0.14em] text-white sm:block">
+            {/* Brand name */}
+            <span className="text-sm font-semibold tracking-[0.14em] text-white">
               VIVEK
             </span>
           </a>
@@ -532,7 +563,7 @@ function Navbar() {
             </motion.div>
           )}
         </AnimatePresence>
-      </motion.nav>
+      </motion.nav >
     </>
   );
 }
