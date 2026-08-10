@@ -15,43 +15,52 @@ function Projects() {
     <ScrollReveal>
       <section
         id="projects"
-        className="relative overflow-hidden bg-[#050914] py-20 text-white sm:py-24 lg:py-28"
+        aria-labelledby="projects-heading"
+        className="relative overflow-hidden bg-[#050914] py-12 text-white sm:py-16 lg:py-20"
       >
-        {/* ============================================================
-            BACKGROUND
-        ============================================================ */}
+        {/* =====================================================
+            Background
+            ===================================================== */}
 
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0"
         >
-          <div className="absolute left-1/2 top-32 h-96 w-96 -translate-x-1/2 rounded-full bg-blue-500/[0.035] blur-3xl" />
+          <div className="absolute left-1/2 top-20 h-56 w-56 -translate-x-1/2 rounded-full bg-blue-500/[0.025] blur-3xl sm:top-24 sm:h-80 sm:w-80" />
 
-          <div className="absolute bottom-40 right-0 h-72 w-72 rounded-full bg-purple-500/[0.025] blur-3xl" />
+          <div className="absolute bottom-24 right-0 h-48 w-48 rounded-full bg-purple-500/[0.018] blur-3xl sm:bottom-32 sm:h-64 sm:w-64" />
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-          {/* ============================================================
-              HEADER
-          ============================================================ */}
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+          {/* =====================================================
+              Header
+              ===================================================== */}
 
-          <div
-            className="mb-10 flex scroll-mt-32 flex-col justify-between gap-7 border-b border-white/[0.07] pb-12 lg:flex-row lg:items-end"
-          >
-            <div>
-              <div className="mb-5 flex items-center gap-3">
-                <span className="font-mono text-xs text-blue-400">
-                  04
+          <div className="mb-8 flex scroll-mt-32 flex-col justify-between gap-5 border-b border-white/[0.07] pb-7 sm:mb-10 sm:gap-7 sm:pb-8 lg:mb-12 lg:flex-row lg:items-end lg:pb-10">
+            <div className="min-w-0">
+              {/* Section marker */}
+
+              <div className="mb-3.5 flex items-center gap-3 sm:mb-4 sm:gap-4">
+                <span className="font-mono text-[10px] text-blue-400 sm:text-xs">
+                  06
                 </span>
 
-                <span className="h-px w-12 bg-blue-500/60" />
+                <span
+                  aria-hidden="true"
+                  className="h-px w-8 bg-blue-500/60 sm:w-12"
+                />
 
-                <span className="text-xs tracking-[0.28em] text-slate-500">
+                <span className="text-[10px] tracking-[0.24em] text-slate-500 sm:text-xs sm:tracking-[0.28em]">
                   SELECTED WORK
                 </span>
               </div>
 
-              <h2 className="max-w-4xl text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+              {/* Heading */}
+
+              <h2
+                id="projects-heading"
+                className="max-w-4xl text-4xl font-semibold leading-[0.98] tracking-[-0.04em] sm:text-5xl lg:text-6xl"
+              >
                 Software built around{" "}
                 <span className="text-slate-500">
                   real problems.
@@ -59,16 +68,18 @@ function Projects() {
               </h2>
             </div>
 
-            <p className="max-w-md text-sm leading-7 text-slate-500">
+            {/* Supporting description */}
+
+            <p className="max-w-md text-sm leading-6 text-slate-500 sm:leading-7 lg:self-end">
               Projects focused on backend engineering, developer
               tooling, full-stack systems and practical software
               architecture.
             </p>
           </div>
 
-          {/* ============================================================
-              CODEVAULT
-          ============================================================ */}
+          {/* =====================================================
+              CodeVault — Flagship Project
+              ===================================================== */}
 
           <div>
             <ProjectCaseStudy
@@ -120,11 +131,11 @@ function Projects() {
             />
           </div>
 
-          {/* ============================================================
-              SECONDARY PROJECTS
-          ============================================================ */}
+          {/* =====================================================
+              Secondary Projects
+              ===================================================== */}
 
-          <div className="space-y-0">
+          <div className="mt-1">
             <ProjectCaseStudy
               number="02"
               variant="compact"
@@ -254,12 +265,15 @@ function Projects() {
             />
           </div>
 
-          {/* ============================================================
-              END NOTE
-          ============================================================ */}
+          {/* =====================================================
+              End note
+              ===================================================== */}
 
-          <div className="flex items-center gap-3 border-t border-white/[0.06] pt-5 text-xs text-slate-600">
-            <LockKeyhole size={14} />
+          <div className="mt-6 flex items-start gap-3 border-t border-white/[0.06] pt-4 text-[10px] leading-5 text-slate-600 sm:mt-7 sm:items-center sm:text-xs">
+            <LockKeyhole
+              size={13}
+              className="mt-0.5 shrink-0 sm:mt-0 sm:h-3.5 sm:w-3.5"
+            />
 
             <span>
               Projects emphasize API design, system integration and
