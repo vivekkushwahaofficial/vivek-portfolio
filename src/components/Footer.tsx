@@ -1,386 +1,227 @@
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
-import {
-  ArrowUpRight,
-  FileText,
-  Menu,
-  X,
-} from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
+import { ArrowUpRight, Heart, Mail } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 
-
-const sections = [
-  { id: "about", label: "About" },
-  { id: "projects", label: "Projects" },
-  { id: "experience", label: "Experience" },
-  { id: "skills", label: "Skills" },
+const footerLinks = [
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Experience", href: "#experience" },
+  { label: "Projects", href: "#projects" },
+  { label: "Contact", href: "#contact" },
 ];
 
-const sectionIds = [
-  "home",
-  "about",
-  "projects",
-  "experience",
-  "skills",
-  "contact",
+const socialLinks = [
+  {
+    label: "GitHub",
+    href: "https://github.com/Vivekkushwahaofficial",
+    icon: SiGithub,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/vivekkushwahaofficial/",
+    icon: LinkedInIcon,
+  },
+  {
+    label: "Email",
+    href: "mailto:vivek39101@gmail.com",
+    icon: Mail,
+  },
 ];
 
-function Navbar() {
-  const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("home");
-  const [scrolled, setScrolled] = useState(false);
-
-  // Detect scrolling and update navbar appearance.
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 24);
-
-      const isAtBottom =
-        window.innerHeight + window.scrollY >=
-        document.documentElement.scrollHeight - 50;
-
-      if (isAtBottom) {
-        setActive("contact");
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, {
-      passive: true,
-    });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  // Detect the currently visible section.
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleSection = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort(
-            (a, b) =>
-              b.intersectionRatio - a.intersectionRatio
-          )[0];
-
-        if (visibleSection) {
-          setActive(visibleSection.target.id);
-        }
-      },
-      {
-        threshold: [0.2, 0.4, 0.6],
-        rootMargin: "-15% 0px -55% 0px",
-      }
-    );
-
-    sectionIds.forEach((id) => {
-      const section = document.getElementById(id);
-
-      if (section) {
-        observer.observe(section);
-      }
-    });
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  // Close mobile menu.
-  const closeMenu = () => {
-    setOpen(false);
-  };
-
+function LinkedInIcon({ size = 15 }) {
   return (
-    <>
-      <motion.nav
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.6,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-        className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6"
-        aria-label="Primary navigation"
-      >
-        <div
-          className={[
-            "mx-auto flex max-w-6xl items-center justify-between",
-            "rounded-2xl border px-4 py-3 transition-all duration-500",
-            scrolled
-              ? "border-white/[0.10] bg-[#080808]/80 shadow-2xl shadow-black/20 backdrop-blur-xl"
-              : "border-transparent bg-transparent",
-          ].join(" ")}
-        >
-          {/* Brand */}
-          <a
-            href="#home"
-            onClick={closeMenu}
-            className="group flex items-center gap-3 rounded-lg px-1 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
-            aria-label="Vivek Kumar home"
-          >
-            <span className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-white/[0.04]">
-              <span className="text-sm font-bold tracking-tight text-white">
-                V
-              </span>
-
-              <span className="absolute inset-x-2 bottom-1 h-px bg-gradient-to-r from-cyan-400 to-blue-500 opacity-70 transition-transform duration-300 group-hover:scale-x-125" />
-            </span>
-
-            <span className="hidden text-sm font-semibold tracking-wide text-white sm:block">
-              VIVEK
-            </span>
-          </a>
-
-          {/* Desktop Navigation */}
-          <div className="hidden items-center gap-1 md:flex">
-            {sections.map((section) => {
-              const isActive = active === section.id;
-
-              return (
-                <a
-                  key={section.id}
-                  href={`#${section.id}`}
-                  aria-current={
-                    isActive ? "page" : undefined
-                  }
-                  className="relative rounded-lg px-3 py-2 text-sm text-zinc-400 transition-colors duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
-                >
-                  {section.label}
-
-                  {isActive && (
-                    <motion.span
-                      layoutId="navbar-active"
-                      className="absolute inset-x-2 -bottom-0.5 h-px bg-cyan-400"
-                      transition={{
-                        duration: 0.25,
-                        ease: "easeOut",
-                      }}
-                    />
-                  )}
-                </a>
-              );
-            })}
-          </div>
-
-          {/* Desktop Actions */}
-          <div className="hidden items-center gap-2 md:flex">
-            {/* GitHub */}
-            <a
-              href="https://github.com/Vivekkushwahaofficial"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Open Vivek's GitHub"
-              className="group inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-zinc-400 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
-            >
-              <SiGithub
-                size={16}
-                className="transition-transform duration-300 group-hover:-translate-y-0.5"
-              />
-
-              <span>GitHub</span>
-            </a>
-
-            {/* Resume */}
-            <a
-              href="/src/assets/Vivek_Kushwaha.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-3.5 py-2 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-400/30 hover:bg-white/[0.07] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
-            >
-              <FileText
-                size={15}
-                strokeWidth={1.8}
-              />
-
-              <span>Resume</span>
-
-              <ArrowUpRight
-                size={14}
-                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              />
-            </a>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            type="button"
-            onClick={() =>
-              setOpen((previous) => !previous)
-            }
-            aria-label={
-              open
-                ? "Close navigation menu"
-                : "Open navigation menu"
-            }
-            aria-expanded={open}
-            className="rounded-lg p-2 text-zinc-300 transition-colors hover:bg-white/[0.05] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 md:hidden"
-          >
-            <AnimatePresence
-              mode="wait"
-              initial={false}
-            >
-              {open ? (
-                <motion.span
-                  key="close"
-                  initial={{
-                    rotate: -45,
-                    opacity: 0,
-                  }}
-                  animate={{
-                    rotate: 0,
-                    opacity: 1,
-                  }}
-                  exit={{
-                    rotate: 45,
-                    opacity: 0,
-                  }}
-                >
-                  <X size={21} />
-                </motion.span>
-              ) : (
-                <motion.span
-                  key="menu"
-                  initial={{
-                    rotate: 45,
-                    opacity: 0,
-                  }}
-                  animate={{
-                    rotate: 0,
-                    opacity: 1,
-                  }}
-                  exit={{
-                    rotate: -45,
-                    opacity: 0,
-                  }}
-                >
-                  <Menu size={21} />
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </button>
-        </div>
-
-        {/* Mobile Navigation */}
-        <AnimatePresence>
-          {open && (
-            <motion.div
-              initial={{
-                opacity: 0,
-                height: 0,
-                y: -8,
-              }}
-              animate={{
-                opacity: 1,
-                height: "auto",
-                y: 0,
-              }}
-              exit={{
-                opacity: 0,
-                height: 0,
-                y: -8,
-              }}
-              transition={{
-                duration: 0.3,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="mx-auto mt-2 max-w-6xl overflow-hidden rounded-2xl border border-white/[0.10] bg-[#080808]/95 backdrop-blur-xl md:hidden"
-            >
-              <div className="p-3">
-                {/* Availability */}
-                <div className="mb-3 flex items-center gap-2 px-3 py-2 text-xs text-zinc-500">
-                  <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-                  </span>
-
-                  Available for opportunities
-                </div>
-
-                {/* Navigation Links */}
-                {sections.map((section, index) => {
-                  const isActive =
-                    active === section.id;
-
-                  return (
-                    <motion.a
-                      key={section.id}
-                      href={`#${section.id}`}
-                      onClick={closeMenu}
-                      initial={{
-                        opacity: 0,
-                        x: -10,
-                      }}
-                      animate={{
-                        opacity: 1,
-                        x: 0,
-                      }}
-                      transition={{
-                        delay: index * 0.04,
-                        duration: 0.25,
-                      }}
-                      className={[
-                        "flex items-center justify-between rounded-xl px-3 py-3 text-sm transition-colors",
-                        isActive
-                          ? "bg-white/[0.05] text-white"
-                          : "text-zinc-400 hover:bg-white/[0.03] hover:text-white",
-                      ].join(" ")}
-                    >
-                      <span>{section.label}</span>
-
-                      {isActive && (
-                        <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
-                      )}
-                    </motion.a>
-                  );
-                })}
-
-                <div className="my-2 h-px bg-white/[0.06]" />
-
-                {/* Mobile GitHub */}
-                <a
-                  href="https://github.com/Vivekkushwahaofficial"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={closeMenu}
-                  className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm text-zinc-400 transition-colors hover:bg-white/[0.03] hover:text-white"
-                >
-                  <SiGithub size={17} />
-
-                  <span>GitHub</span>
-
-                  <ArrowUpRight
-                    className="ml-auto"
-                    size={15}
-                  />
-                </a>
-
-                {/* Mobile Resume */}
-                <a
-                  href="/src/assets/Vivek_Kushwaha.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={closeMenu}
-                  className="mt-1 flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-3 text-sm font-medium text-white"
-                >
-                  <FileText size={17} />
-
-                  <span>View Resume</span>
-
-                  <ArrowUpRight
-                    className="ml-auto"
-                    size={15}
-                  />
-                </a>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.nav>
-    </>
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V8.99h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.48v6.27ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM3.54 20.45H7.1V8.99H3.54v11.46Z" />
+    </svg>
   );
 }
 
-export default Navbar;
+function Footer() {
+  const reducedMotion = useReducedMotion();
+
+  const handleInternalNavigation = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    if (!href.startsWith("#")) {
+      return;
+    }
+
+    const target = document.querySelector(href);
+
+    if (!target) {
+      return;
+    }
+
+    event.preventDefault();
+
+    target.scrollIntoView({
+      behavior: reducedMotion ? "auto" : "smooth",
+      block: "start",
+    });
+
+    window.history.replaceState(null, "", href);
+  };
+
+  return (
+    <footer className="relative overflow-hidden border-t border-white/[0.07] bg-[#050914]">
+      {/* Subtle ambient background */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div className="absolute left-[18%] top-0 h-40 w-40 rounded-full bg-blue-500/[0.025] blur-3xl sm:h-56 sm:w-56" />
+        <div className="absolute bottom-0 right-[12%] h-44 w-44 rounded-full bg-violet-500/[0.018] blur-3xl sm:h-64 sm:w-64" />
+        <div
+          className="absolute inset-0 opacity-[0.015]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+          }}
+        />
+      </div>
+
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        {/* Main footer area */}
+        <div className="grid gap-10 py-12 sm:gap-12 sm:py-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20 lg:py-16">
+          {/* Brand / closing statement */}
+          <div className="min-w-0">
+            <a
+              href="#home"
+              onClick={(event) => handleInternalNavigation(event, "#home")}
+              className="group inline-flex items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60"
+              aria-label="Back to home"
+            >
+              <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-lg border border-white/[0.1] bg-white/[0.035]">
+                <span className="text-sm font-semibold text-white">V</span>
+                <span
+                  aria-hidden="true"
+                  className="absolute bottom-1.5 left-2 right-2 h-px bg-blue-400/70 transition-transform duration-300 group-hover:scale-x-125"
+                />
+              </span>
+
+              <span className="text-sm font-semibold tracking-[0.16em] text-white">
+                VIVEK
+              </span>
+            </a>
+
+            <p className="mt-6 max-w-xl text-2xl font-medium leading-tight tracking-[-0.025em] text-white sm:mt-7 sm:text-3xl">
+              Building software with{" "}
+              <span className="text-slate-500">purpose.</span>
+            </p>
+
+            <p className="mt-4 max-w-lg text-sm leading-6 text-slate-500 sm:mt-5 sm:leading-7">
+              Java · Spring Boot · AI · Open Source
+            </p>
+          </div>
+
+          {/* Navigation + socials */}
+          <div className="grid gap-9 sm:grid-cols-2 sm:gap-10 lg:justify-self-end lg:min-w-[430px]">
+            <div>
+              <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.24em] text-slate-600">
+                Navigate
+              </p>
+
+              <nav aria-label="Footer navigation">
+                <ul className="grid grid-cols-2 gap-x-5 gap-y-3">
+                  {footerLinks.map((link) => (
+                    <li key={link.label}>
+                      <a
+                        href={link.href}
+                        onClick={(event) =>
+                          handleInternalNavigation(event, link.href)
+                        }
+                        className="group inline-flex items-center gap-1.5 py-1 text-sm text-slate-500 transition-colors duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60"
+                      >
+                        <span>{link.label}</span>
+                        <ArrowUpRight
+                          size={12}
+                          className="opacity-0 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100"
+                        />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+
+            <div>
+              <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.24em] text-slate-600">
+                Connect
+              </p>
+
+              <ul className="space-y-3">
+                {socialLinks.map((link) => {
+                  const Icon = link.icon;
+
+                  return (
+                    <li key={link.label}>
+                      <a
+                        href={link.href}
+                        target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+                        rel={
+                          link.href.startsWith("mailto:")
+                            ? undefined
+                            : "noopener noreferrer"
+                        }
+                        className="group inline-flex min-h-9 items-center gap-2.5 text-sm text-slate-500 transition-colors duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60"
+                      >
+                        <Icon
+                          size={15}
+                          strokeWidth={1.6}
+                          className="shrink-0 transition-transform duration-200 group-hover:-translate-y-0.5"
+                        />
+
+                        <span>{link.label}</span>
+
+                        <ArrowUpRight
+                          size={12}
+                          className="opacity-0 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100"
+                        />
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom status bar */}
+        <div className="flex flex-col gap-4 border-t border-white/[0.07] py-5 text-[10px] leading-5 text-slate-600 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:text-xs">
+          <p className="flex flex-wrap items-center gap-x-1.5 gap-y-1">
+            <span>Designed &amp; built by Vivek</span>
+            <span aria-hidden="true">·</span>
+            <span>© 2026</span>
+          </p>
+
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <span className="flex items-center gap-1.5">
+              <Heart
+                size={11}
+                strokeWidth={1.5}
+                className="text-slate-700"
+              />
+              Software engineering
+            </span>
+
+            <span className="flex items-center gap-1.5">
+              <span
+                aria-hidden="true"
+                className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]"
+              />
+              System operational
+            </span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+export default Footer;
