@@ -206,14 +206,13 @@ function Home() {
               {/* Projects */}
               <a
                 href="#projects"
-                className="group inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-sm font-medium text-slate-950 transition duration-200 hover:-translate-y-0.5 hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 sm:px-5 sm:py-3"
+                className="group inline-flex items-center gap-2 rounded-lg bg-slate-900/60 px-4 py-2.5 text-sm font-medium text-slate-300 transition duration-200 hover:-translate-y-0.5 hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 sm:px-5 sm:py-3"
               >
                 Explore projects
 
                 <ArrowRight
                   size={16}
-                  aria-hidden="true"
-                  className="transition-transform duration-200 group-hover:translate-x-1"
+                  className="transition-transform duration-300 group-hover:translate-x-1"
                 />
               </a>
 

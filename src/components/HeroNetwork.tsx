@@ -321,25 +321,23 @@ function HeroNetwork() {
         =================================================== */}
 
         <motion.circle
+          cx="300"
+          cy="300"
           r="4"
           fill="#60a5fa"
-          animate={
-            reducedMotion
-              ? undefined
-              : {
-                cx: [300, 120, 300],
-                cy: [300, 150, 300],
-              }
-          }
-          transition={
-            reducedMotion
-              ? undefined
-              : {
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }
-          }
+          initial={{
+            cx: 300,
+            cy: 300,
+          }}
+          animate={{
+            cx: [300, 145, 300],
+            cy: [300, 145, 300],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         />
 
         {/* ===================================================
@@ -409,15 +407,16 @@ function HeroNetwork() {
           ease: "easeOut",
         }}
         className="
-          absolute
-          left-1/2
-          top-1/2
-          z-40
-          w-[132px]
-          -translate-x-1/2
-          -translate-y-1/2
-          sm:w-[140px]
-        "
+  absolute
+  left-1/2
+  top-1/2
+  z-40
+  w-[112px]
+  -translate-x-1/2
+  -translate-y-1/2
+  sm:w-[132px]
+  lg:w-[140px]
+"
       >
         <motion.div
           whileHover={
@@ -434,7 +433,7 @@ function HeroNetwork() {
             border
             border-blue-400/30
             bg-[#080f1d]/95
-            p-2.5
+            p-2
             shadow-[0_0_30px_rgba(59,130,246,0.12)]
             backdrop-blur-md
           "
@@ -443,14 +442,16 @@ function HeroNetwork() {
 
           <div
             className="
-              relative
-              aspect-square
-              overflow-hidden
-              rounded-[13px]
-              border
-              border-white/[0.08]
-              bg-slate-900
-            "
+    relative
+    mx-auto
+    aspect-square
+    w-[92%]
+    overflow-hidden
+    rounded-[13px]
+    border
+    border-white/[0.08]
+    bg-slate-900
+  "
           >
             <img
               src={profileImage}
@@ -518,12 +519,10 @@ function HeroNetwork() {
           {/* Profile information */}
 
           <div className="pt-2 text-center">
-            <p className="text-xs font-semibold tracking-wide text-white sm:text-sm">
-              Vivek Kumar
+            <p className="text-[11px] font-semibold tracking-wide text-white sm:text-sm">              Vivek Kumar
             </p>
 
-            <p className="mt-0.5 text-[9px] text-slate-500 sm:text-[10px]">
-              Software Engineer
+            <p className="mt-0.5 text-[8px] text-slate-500 sm:text-[10px]">              Software Engineer
             </p>
 
             <div className="mt-1.5 flex items-center justify-center gap-1.5">

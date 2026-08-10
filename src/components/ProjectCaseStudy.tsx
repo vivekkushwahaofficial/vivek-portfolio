@@ -150,8 +150,8 @@ function ProjectCaseStudy({
 
           <div
             className={`flex flex-wrap gap-1.5 sm:gap-2 ${isFlagship
-                ? "mt-4 sm:mt-6"
-                : "mt-3.5 sm:mt-4"
+              ? "mt-4 sm:mt-6"
+              : "mt-3.5 sm:mt-4"
               }`}
           >
             {technologies.map((technology) => (
@@ -217,8 +217,8 @@ function ProjectCaseStudy({
 
       <div
         className={`relative mt-6 overflow-hidden rounded-xl border border-white/[0.07] bg-[#060b15] sm:mt-7 sm:rounded-2xl ${isFlagship
-            ? "p-4.5 sm:p-6 lg:p-7"
-            : "p-4 sm:p-5"
+          ? "p-4.5 sm:p-6 lg:p-7"
+          : "p-4 sm:p-5"
           }`}
       >
         <div className="mb-4 flex items-center justify-between gap-4 sm:mb-5">
@@ -266,8 +266,8 @@ function ProjectCaseStudy({
                   }
                   transition={{ duration: 0.2 }}
                   className={`h-full rounded-xl border border-white/[0.07] bg-white/[0.02] ${isFlagship
-                      ? "p-3.5 sm:p-4"
-                      : "p-3 sm:p-3.5"
+                    ? "p-3.5 sm:p-4"
+                    : "p-3 sm:p-3.5"
                     }`}
                 >
                   <div className="flex items-center justify-between gap-3">
@@ -383,8 +383,8 @@ function ProjectCaseStudy({
       {(github || live) && (
         <div
           className={`flex flex-wrap items-center gap-2.5 sm:gap-3 ${isFlagship
-              ? "mt-5 sm:mt-6"
-              : "mt-4.5 sm:mt-5"
+            ? "mt-5 sm:mt-6"
+            : "mt-4.5 sm:mt-5"
             }`}
         >
           {github && (
@@ -403,7 +403,7 @@ function ProjectCaseStudy({
 
               <ArrowUpRight
                 size={14}
-                className="transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
+                className="transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
               />
             </a>
           )}
@@ -413,8 +413,7 @@ function ProjectCaseStudy({
               href={live}
               target="_blank"
               rel="noopener noreferrer"
-              className="group/link inline-flex min-h-10 items-center gap-2 rounded-xl bg-white px-3.5 py-2.5 text-xs font-medium text-black transition-all duration-200 hover:-translate-y-0.5 hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60 sm:min-h-11 sm:px-5 sm:py-3 sm:text-sm"
-            >
+              className="group/link inline-flex min-h-10 items-center gap-2 rounded-xl border border-slate-700/80 bg-slate-900/60 px-3.5 py-2.5 text-xs font-medium text-slate-300 transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400/40 hover:bg-blue-500/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60 sm:min-h-11 sm:px-5 sm:py-3 sm:text-sm"            >
               <span>Live Demo</span>
 
               <ArrowUpRight
