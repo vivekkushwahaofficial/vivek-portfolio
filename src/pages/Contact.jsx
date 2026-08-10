@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
+import SectionRail from "../components/SectionRail";
+
 import {
   ArrowUpRight,
   Check,
@@ -152,6 +154,7 @@ Sent from your portfolio website.`,
       aria-labelledby="contact-heading"
       className="relative overflow-hidden border-t border-white/[0.06] bg-[#080b14]"
     >
+      <SectionRail />
       {/* Background */}
       <div
         aria-hidden="true"

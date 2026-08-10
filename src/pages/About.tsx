@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import ScrollReveal from "../components/ScrollReveal";
+import SectionRail from "../components/SectionRail";
 
 interface Stat {
   value: number;
@@ -113,17 +114,18 @@ function About() {
         id="about"
         aria-labelledby="about-heading"
         className="
-          relative
-          overflow-hidden
-          px-5
-          py-16
-          sm:px-6
-          sm:py-20
-          lg:px-10
-          lg:py-28
-          xl:px-16
-        "
+    relative
+    overflow-hidden
+    px-5
+    py-16
+    sm:px-6
+    sm:py-20
+    lg:px-10
+    lg:py-28
+    xl:px-16
+  "
       >
+        <SectionRail />
         <div className="mx-auto max-w-7xl">
           {/* Section header */}
           <div className="mb-10 flex items-center gap-3 sm:mb-12 sm:gap-4">
@@ -313,7 +315,7 @@ function About() {
                       aria-hidden="true"
                       className="
                         absolute
-                        left-0
+                        left-12
                         top-1/2
                         hidden
                         h-10

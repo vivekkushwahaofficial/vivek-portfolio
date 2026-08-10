@@ -2,8 +2,9 @@ import { motion, useReducedMotion } from "motion/react";
 import { ArrowUpRight, BookOpen } from "lucide-react";
 
 import ScrollReveal from "../components/ScrollReveal";
+import SectionRail from "../components/SectionRail";
 
-function Research() {
+function Publication() {
   const reducedMotion = useReducedMotion();
 
   const revealTransition = {
@@ -24,11 +25,11 @@ function Research() {
       <section
         id="publications"
         aria-labelledby="publications-heading"
-        className="relative scroll-mt-28 overflow-hidden border-t border-white/[0.06] bg-[#080b14]"
-      >
+        className="relative scroll-mt-28 overflow-hidden bg-[#080b14]"      >
         {/* =====================================================
             Ambient background
         ====================================================== */}
+        <SectionRail />
 
         <div
           aria-hidden="true"
@@ -74,7 +75,7 @@ function Research() {
             className="mb-7 flex items-center gap-3 sm:mb-8 sm:gap-4"
           >
             <span className="font-mono text-[10px] font-medium tracking-[0.28em] text-cyan-400 sm:text-[11px]">
-              04
+              05
             </span>
 
             <span
@@ -291,4 +292,4 @@ function Research() {
   );
 }
 
-export default Research;
+export default Publication;

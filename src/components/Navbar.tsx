@@ -19,8 +19,8 @@ const sections = [
   { id: "about", label: "About" },
   { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
-  { id: "publications", label: "Publications" },
   { id: "certifications", label: "Certifications" },
+  { id: "publications", label: "Publications" },
   { id: "projects", label: "Projects" },
   { id: "contact", label: "Contact" },
 ];
@@ -30,8 +30,8 @@ const sectionIds = [
   "about",
   "skills",
   "experience",
-  "publications",
   "certifications",
+  "publications",
   "projects",
   "contact",
 ];

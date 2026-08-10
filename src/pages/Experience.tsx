@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 
 import ScrollReveal from "../components/ScrollReveal";
+import SectionRail from "../components/SectionRail";
 
 const contributions = [
   {
@@ -63,6 +64,8 @@ function Experience() {
         aria-labelledby="experience-heading"
         className="relative overflow-hidden border-t border-white/[0.06] bg-[#080b14]"
       >
+        <SectionRail />
+
         {/* =====================================================
             Ambient background
         ===================================================== */}

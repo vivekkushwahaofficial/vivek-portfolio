@@ -18,7 +18,7 @@ import Contact from "./pages/Contact";
 type Screen = "intro" | "welcome" | "portfolio";
 
 function App() {
-  const [screen, setScreen] = useState<Screen>("intro");
+  const [screen, setScreen] = useState("intro");
 
   return (
     <>

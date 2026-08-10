@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 
 import ScrollReveal from "../components/ScrollReveal";
+import SectionRail from "../components/SectionRail";
 
 import javaCert from "../assets/certificates/java_certification.pdf";
 import programmingJavaCert from "../assets/certificates/Programming in Java.pdf";
@@ -72,6 +73,7 @@ function Certification() {
         aria-labelledby="certifications-heading"
         className="relative overflow-hidden border-t border-white/[0.06] bg-[#080b14]"
       >
+        <SectionRail />
         {/* =====================================================
             Ambient background
             ===================================================== */}

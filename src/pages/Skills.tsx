@@ -1,5 +1,6 @@
 import ScrollReveal from "../components/ScrollReveal";
 import SkillsConstellation from "../components/SkillsConstellation";
+import SectionRail from "../components/SectionRail";
 
 interface EngineeringArea {
   number: string;
@@ -102,6 +103,8 @@ function Skills() {
           xl:px-16
         "
       >
+        <SectionRail />
+
         <div className="mx-auto max-w-7xl">
           {/* Section header */}
           <div className="flex flex-col gap-7 lg:grid lg:grid-cols-[1fr_auto] lg:items-end lg:gap-12">

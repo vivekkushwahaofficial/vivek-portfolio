@@ -9,6 +9,8 @@ import {
 
 import ScrollReveal from "../components/ScrollReveal";
 import ProjectCaseStudy from "../components/ProjectCaseStudy";
+import ProjectDivider from "../components/ProjectDivider";
+import SectionRail from "../components/SectionRail";
 
 function Projects() {
   return (
@@ -18,6 +20,7 @@ function Projects() {
         aria-labelledby="projects-heading"
         className="relative overflow-hidden bg-[#050914] py-12 text-white sm:py-16 lg:py-20"
       >
+        <SectionRail />
         {/* =====================================================
             Background
             ===================================================== */}
@@ -42,7 +45,7 @@ function Projects() {
 
               <div className="mb-3.5 flex items-center gap-3 sm:mb-4 sm:gap-4">
                 <span className="font-mono text-[10px] text-blue-400 sm:text-xs">
-                  05
+                  06
                 </span>
 
                 <span
@@ -131,6 +134,8 @@ function Projects() {
             />
           </div>
 
+          <ProjectDivider />
+
           {/* =====================================================
               Secondary Projects
               ===================================================== */}
@@ -177,6 +182,8 @@ function Projects() {
               ]}
             />
 
+            <ProjectDivider />
+
             <ProjectCaseStudy
               number="03"
               variant="compact"
@@ -220,6 +227,8 @@ function Projects() {
               github="https://github.com/vivekkushwahaofficial/peernexus"
               live="https://peernexus.vercel.app/"
             />
+
+            <ProjectDivider />
 
             <ProjectCaseStudy
               number="04"
