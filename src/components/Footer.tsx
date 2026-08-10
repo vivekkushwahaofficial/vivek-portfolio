@@ -35,26 +35,10 @@ function LinkedInIcon({ size = 15 }) {
       width={size}
       height={size}
       viewBox="0 0 24 24"
-      fill="none"
+      fill="currentColor"
       aria-hidden="true"
     >
-      <path
-        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v2a4 4 0 0 1 2-2Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <rect
-        x="2"
-        y="8"
-        width="4"
-        height="13"
-        rx="1"
-        stroke="currentColor"
-        strokeWidth="1.8"
-      />
-      <circle cx="4" cy="4" r="2" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V8.99h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.48v6.27ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM3.54 20.45H7.1V8.99H3.54v11.46Z" />
     </svg>
   );
 }
@@ -87,9 +71,10 @@ function Footer() {
   };
 
   return (
-    <footer className="relative overflow-hidden">
+    <footer className="relative overflow-hidden border-t border-white/[0.06] bg-[#05070b]">
       {/* Subtle ambient background */}
       <div
+        aria-hidden="true"
         className="absolute inset-0 opacity-[0.015]"
         style={{
           backgroundImage:
@@ -98,9 +83,9 @@ function Footer() {
         }}
       />
 
-      <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+      <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
         {/* Main footer area */}
-        <div className="grid gap-10 py-12 sm:gap-12 sm:py-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20 lg:py-16">
+        <div className="grid min-w-0 gap-10 py-12 sm:gap-12 sm:py-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20 lg:py-16">
           {/* Brand / closing statement */}
           <div className="min-w-0">
             <a
@@ -111,8 +96,8 @@ function Footer() {
               className="group inline-flex items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60"
               aria-label="Back to home"
             >
-              {/* UPDATED: Profile image */}
-              <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-lg border border-white/[0.1] bg-white/[0.035]">
+              {/* Profile image */}
+              <span className="relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-white/[0.1] bg-white/[0.035]">
                 <img
                   src={profileImg}
                   alt="Vivek"
@@ -132,7 +117,9 @@ function Footer() {
 
             <p className="mt-6 max-w-xl text-2xl font-medium leading-tight tracking-[-0.025em] text-white sm:mt-7 sm:text-3xl">
               Building software with{" "}
-              <span className="text-slate-500">purpose.</span>
+              <span className="text-slate-500">
+                purpose.
+              </span>
             </p>
 
             <p className="mt-4 max-w-lg text-sm leading-6 text-slate-500 sm:mt-5 sm:leading-7">
@@ -141,20 +128,23 @@ function Footer() {
           </div>
 
           {/* Navigation + socials */}
-          <div className="grid gap-9 sm:grid-cols-2 sm:gap-10 lg:justify-self-end lg:min-w-[430px]">
-            <div>
+          <div className="grid min-w-0 gap-9 sm:grid-cols-2 sm:gap-10 lg:max-w-[430px] lg:justify-self-end lg:min-w-0">
+            <div className="min-w-0">
               <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.24em] text-slate-600">
                 Navigate
               </p>
 
               <nav aria-label="Footer navigation">
-                <ul className="grid grid-cols-2 gap-x-5 gap-y-3">
+                <ul className="grid grid-cols-2 gap-x-4 gap-y-3 sm:gap-x-5">
                   {footerLinks.map((link) => (
                     <li key={link.label}>
                       <a
                         href={link.href}
                         onClick={(event) =>
-                          handleInternalNavigation(event, link.href)
+                          handleInternalNavigation(
+                            event,
+                            link.href
+                          )
                         }
                         className="group inline-flex items-center gap-1.5 py-1 text-sm text-slate-500 transition-colors duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60"
                       >
@@ -171,7 +161,7 @@ function Footer() {
               </nav>
             </div>
 
-            <div>
+            <div className="min-w-0">
               <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.24em] text-slate-600">
                 Connect
               </p>
@@ -194,7 +184,7 @@ function Footer() {
                             ? undefined
                             : "noopener noreferrer"
                         }
-                        className="group inline-flex min-h-9 items-center gap-2.5 text-sm text-slate-500 transition-colors duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60"
+                        className="group inline-flex min-h-10 max-w-full items-center gap-2.5 text-sm text-slate-500 transition-colors duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60 sm:min-h-9"
                       >
                         <Icon
                           size={15}
@@ -202,11 +192,13 @@ function Footer() {
                           className="shrink-0 transition-transform duration-200 group-hover:-translate-y-0.5"
                         />
 
-                        <span>{link.label}</span>
+                        <span className="truncate">
+                          {link.label}
+                        </span>
 
                         <ArrowUpRight
                           size={12}
-                          className="opacity-0 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100"
+                          className="shrink-0 opacity-0 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100"
                         />
                       </a>
                     </li>
@@ -218,28 +210,32 @@ function Footer() {
         </div>
 
         {/* Bottom status bar */}
-        <div className="flex flex-col gap-4 border-t border-white/[0.07] py-5 text-[10px] leading-5 text-slate-600 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:text-xs">
-          <p className="flex flex-wrap items-center gap-x-1.5 gap-y-1">
+        <div className="flex min-w-0 flex-col gap-4 border-t border-white/[0.07] py-5 text-[10px] leading-5 text-slate-600 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:text-xs">
+          <p className="flex min-w-0 flex-wrap items-center gap-x-1.5 gap-y-1">
             <span>Designed &amp; built by Vivek</span>
+
             <span aria-hidden="true">·</span>
+
             <span>© 2026</span>
           </p>
 
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+          <div className="flex min-w-0 flex-wrap items-center gap-x-4 gap-y-2">
             <span className="flex items-center gap-1.5">
               <Heart
                 size={11}
                 strokeWidth={1.5}
-                className="text-slate-700"
+                className="shrink-0 text-slate-700"
               />
+
               Software engineering
             </span>
 
             <span className="flex items-center gap-1.5">
               <span
                 aria-hidden="true"
-                className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]"
+                className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]"
               />
+
               System operational
             </span>
           </div>

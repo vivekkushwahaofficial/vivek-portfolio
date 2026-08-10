@@ -59,7 +59,12 @@ function NetworkNode({
             ease: "easeInOut",
           },
       }}
-      className="absolute z-30 -translate-x-1/2 -translate-y-1/2"
+      className="
+        absolute
+        z-30
+        -translate-x-1/2
+        -translate-y-1/2
+      "
       style={{
         left: x,
         top: y,
@@ -67,9 +72,23 @@ function NetworkNode({
     >
       <div
         className={[
+          // Desktop
           "group flex min-w-[112px] items-center gap-2 rounded-xl border",
           "px-3 py-2.5 backdrop-blur-sm transition duration-300",
           "hover:-translate-y-1",
+
+          // Mobile
+          "max-[640px]:min-w-[82px]",
+          "max-[640px]:gap-1.5",
+          "max-[640px]:rounded-lg",
+          "max-[640px]:px-2",
+          "max-[640px]:py-1.5",
+
+          // Very small screens
+          "max-[380px]:min-w-[76px]",
+          "max-[380px]:px-1.5",
+          "max-[380px]:py-1",
+
           primary
             ? "border-blue-400/40 bg-blue-500/[0.12] shadow-[0_0_30px_rgba(59,130,246,0.12)]"
             : "border-slate-700/80 bg-slate-900/80 hover:border-blue-400/30",
@@ -77,16 +96,35 @@ function NetworkNode({
       >
         <span
           className={[
+            // Desktop
             "flex h-7 w-7 shrink-0 items-center justify-center rounded-lg",
+
+            // Mobile
+            "max-[640px]:h-5 max-[640px]:w-5",
+            "max-[640px]:rounded-md",
+
+            "max-[380px]:h-[18px] max-[380px]:w-[18px]",
+
             primary
               ? "bg-blue-400/10 text-blue-300"
               : "bg-slate-800 text-slate-400",
           ].join(" ")}
         >
-          {icon}
+          <span className="max-[640px]:scale-[0.75] max-[380px]:scale-[0.65]">
+            {icon}
+          </span>
         </span>
 
-        <span className="whitespace-nowrap text-xs font-medium text-slate-200">
+        <span
+          className="
+            whitespace-nowrap
+            text-xs
+            font-medium
+            text-slate-200
+            max-[640px]:text-[10px]
+            max-[380px]:text-[9px]
+          "
+        >
           {label}
         </span>
       </div>
@@ -104,9 +142,24 @@ function HeroNetwork() {
         mx-auto
         aspect-square
         w-full
+
+        /* Desktop */
         max-w-[430px]
+
+        /* Tablet */
         sm:max-w-[450px]
+
+        /* Desktop large */
         lg:max-w-[460px]
+
+        /* Mobile */
+        max-[640px]:max-w-[310px]
+
+        /* Small mobile */
+        max-[480px]:max-w-[285px]
+
+        /* Very small mobile */
+        max-[380px]:max-w-[255px]
       "
       aria-label="Technical architecture visualization"
     >
@@ -128,6 +181,8 @@ function HeroNetwork() {
           rounded-full
           bg-blue-500/[0.035]
           blur-[65px]
+
+          max-[640px]:blur-[45px]
         "
       />
 
@@ -208,30 +263,6 @@ function HeroNetwork() {
 
       {/* =====================================================
           SVG CONNECTIONS
-
-          All coordinates use the same logical positions
-          as the technology nodes.
-
-          SVG coordinate system:
-          600 × 600
-
-          Java:
-            120 / 150
-
-          Spring Boot:
-            480 / 150
-
-          AI:
-            120 / 450
-
-          PostgreSQL:
-            480 / 450
-
-          Docker:
-            300 / 60
-
-          GitHub:
-            300 / 540
       ===================================================== */}
 
       <svg
@@ -287,9 +318,7 @@ function HeroNetwork() {
           </filter>
         </defs>
 
-        {/* ===================================================
-            CONNECTIONS
-        =================================================== */}
+        {/* Connections */}
 
         <g
           fill="none"
@@ -297,28 +326,15 @@ function HeroNetwork() {
           strokeWidth="1.5"
           filter="url(#networkGlow)"
         >
-          {/* Java */}
           <path d="M300 300 L120 150" />
-
-          {/* Spring Boot */}
           <path d="M300 300 L480 150" />
-
-          {/* AI */}
           <path d="M300 300 L120 450" />
-
-          {/* PostgreSQL */}
           <path d="M300 300 L480 450" />
-
-          {/* Docker */}
           <path d="M300 300 L300 60" />
-
-          {/* GitHub */}
           <path d="M300 300 L300 540" />
         </g>
 
-        {/* ===================================================
-            ANIMATED DATA PACKET — JAVA
-        =================================================== */}
+        {/* Animated packet — Java */}
 
         <motion.circle
           cx="300"
@@ -340,9 +356,7 @@ function HeroNetwork() {
           }}
         />
 
-        {/* ===================================================
-            ANIMATED DATA PACKET — GITHUB / POSTGRESQL
-        =================================================== */}
+        {/* Animated packet — GitHub / PostgreSQL */}
 
         <motion.circle
           r="3"
@@ -367,9 +381,7 @@ function HeroNetwork() {
           }
         />
 
-        {/* ===================================================
-            CENTER ARCHITECTURAL GLOW
-        =================================================== */}
+        {/* Center glow */}
 
         <circle
           cx="300"
@@ -407,16 +419,22 @@ function HeroNetwork() {
           ease: "easeOut",
         }}
         className="
-  absolute
-  left-1/2
-  top-1/2
-  z-40
-  w-[112px]
-  -translate-x-1/2
-  -translate-y-1/2
-  sm:w-[132px]
-  lg:w-[140px]
-"
+          absolute
+          left-1/2
+          top-1/2
+          z-40
+          w-[112px]
+          -translate-x-1/2
+          -translate-y-1/2
+
+          sm:w-[132px]
+          lg:w-[140px]
+
+          /* Mobile */
+          max-[640px]:w-[92px]
+          max-[480px]:w-[86px]
+          max-[380px]:w-[78px]
+        "
       >
         <motion.div
           whileHover={
@@ -436,22 +454,30 @@ function HeroNetwork() {
             p-2
             shadow-[0_0_30px_rgba(59,130,246,0.12)]
             backdrop-blur-md
+
+            max-[640px]:rounded-[14px]
+            max-[640px]:p-1.5
+
+            max-[380px]:rounded-[12px]
+            max-[380px]:p-1
           "
         >
           {/* Profile image */}
 
           <div
             className="
-    relative
-    mx-auto
-    aspect-square
-    w-[92%]
-    overflow-hidden
-    rounded-[13px]
-    border
-    border-white/[0.08]
-    bg-slate-900
-  "
+              relative
+              mx-auto
+              aspect-square
+              w-[92%]
+              overflow-hidden
+              rounded-[13px]
+              border
+              border-white/[0.08]
+              bg-slate-900
+
+              max-[640px]:rounded-[10px]
+            "
           >
             <img
               src={profileImage}
@@ -478,54 +504,50 @@ function HeroNetwork() {
                 to-white/[0.03]
               "
             />
-
-            {/* Status */}
-
-            {/* <motion.span
-              aria-hidden="true"
-              animate={
-                reducedMotion
-                  ? undefined
-                  : {
-                    boxShadow: [
-                      "0 0 0 rgba(52,211,153,0)",
-                      "0 0 9px rgba(52,211,153,0.65)",
-                      "0 0 0 rgba(52,211,153,0)",
-                    ],
-                  }
-              }
-              transition={
-                reducedMotion
-                  ? undefined
-                  : {
-                    duration: 2,
-                    repeat: Infinity,
-                  }
-              }
-              className="
-                absolute
-                bottom-2
-                right-2
-                h-3
-                w-3
-                rounded-full
-                border-2
-                border-[#080f1d]
-                bg-emerald-400
-              "
-            /> */}
           </div>
 
           {/* Profile information */}
 
-          <div className="pt-2 text-center">
-            <p className="text-[11px] font-semibold tracking-wide text-white sm:text-sm">              Vivek Kumar
+          <div className="pt-2 text-center max-[640px]:pt-1.5">
+            <p
+              className="
+                text-[11px]
+                font-semibold
+                tracking-wide
+                text-white
+
+                max-[640px]:text-[8px]
+                max-[380px]:text-[7px]
+              "
+            >
+              Vivek Kumar
             </p>
 
-            <p className="mt-0.5 text-[8px] text-slate-500 sm:text-[10px]">              Software Engineer
+            <p
+              className="
+                mt-0.5
+                text-[8px]
+                text-slate-500
+
+                max-[640px]:text-[6px]
+                max-[380px]:text-[5px]
+              "
+            >
+              Software Engineer
             </p>
 
-            <div className="mt-1.5 flex items-center justify-center gap-1.5">
+            <div
+              className="
+                mt-1.5
+                flex
+                items-center
+                justify-center
+                gap-1.5
+
+                max-[640px]:mt-1
+                max-[640px]:gap-1
+              "
+            >
               <span
                 aria-hidden="true"
                 className="
@@ -534,6 +556,9 @@ function HeroNetwork() {
                   rounded-full
                   bg-emerald-400
                   shadow-[0_0_7px_rgba(52,211,153,0.65)]
+
+                  max-[640px]:h-1
+                  max-[640px]:w-1
                 "
               />
 
@@ -544,6 +569,9 @@ function HeroNetwork() {
                   uppercase
                   tracking-[0.22em]
                   text-slate-500
+
+                  max-[640px]:text-[5px]
+                  max-[380px]:text-[4px]
                 "
               >
                 Available
@@ -628,6 +656,9 @@ function HeroNetwork() {
           uppercase
           tracking-[0.25em]
           text-slate-600
+
+          max-[640px]:text-[7px]
+          max-[380px]:text-[6px]
         "
       >
         API

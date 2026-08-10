@@ -28,7 +28,7 @@ function Home() {
     <section
       id="home"
       aria-labelledby="hero-heading"
-      className="relative min-h-screen overflow-hidden bg-[#05070b]"
+      className="relative min-h-0 overflow-hidden bg-[#05070b] lg:min-h-screen"
     >
       {/* =========================================================
           Background grid
@@ -48,20 +48,87 @@ function Home() {
           ========================================================= */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/4 top-1/4 h-64 w-64 rounded-full bg-blue-500/10 blur-[100px] sm:h-80 sm:w-80 sm:blur-[120px]"
+        className="
+          pointer-events-none
+          absolute
+          left-1/4
+          top-1/4
+          h-48
+          w-48
+          rounded-full
+          bg-blue-500/[0.07]
+          blur-[80px]
+          sm:h-64
+          sm:w-64
+          sm:bg-blue-500/10
+          sm:blur-[100px]
+          lg:h-80
+          lg:w-80
+          lg:blur-[120px]
+        "
       />
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute right-[12%] top-[35%] h-48 w-48 rounded-full bg-violet-500/[0.025] blur-[100px] sm:h-64 sm:w-64"
+        className="
+          pointer-events-none
+          absolute
+          right-[8%]
+          top-[35%]
+          h-36
+          w-36
+          rounded-full
+          bg-violet-500/[0.02]
+          blur-[70px]
+          sm:right-[12%]
+          sm:h-48
+          sm:w-48
+          sm:blur-[90px]
+          lg:h-64
+          lg:w-64
+          lg:blur-[100px]
+        "
       />
 
       {/* =========================================================
           Hero content
           ========================================================= */}
-      <div className="relative mx-auto flex max-w-7xl items-center px-5 pb-12 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:min-h-[calc(100svh-1rem)] lg:px-10 lg:py-20">
-        <div className="grid w-full items-center gap-8 sm:gap-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-8">
+      <div
+        className="
+          relative
+          mx-auto
+          flex
+          w-full
+          max-w-7xl
+          items-start
+          px-5
+          pb-8
+          pt-20
 
+          sm:px-6
+          sm:pb-10
+          sm:pt-24
+
+          lg:min-h-[calc(100svh-1rem)]
+          lg:items-center
+          lg:px-10
+          lg:py-20
+        "
+      >
+        <div
+          className="
+            grid
+            w-full
+            items-start
+            gap-7
+
+            sm:gap-9
+
+            lg:grid-cols-[1.05fr_.95fr]
+            lg:items-center
+            lg:gap-8
+          "
+        >
           {/* =====================================================
               Left content
               ===================================================== */}
@@ -78,7 +145,7 @@ function Home() {
               duration: reducedMotion ? 0 : 0.7,
               ease: "easeOut",
             }}
-            className="max-w-3xl"
+            className="w-full max-w-3xl"
           >
             {/* Availability */}
             <motion.div
@@ -94,9 +161,27 @@ function Home() {
                 delay: reducedMotion ? 0 : 0.15,
                 duration: reducedMotion ? 0 : 0.5,
               }}
-              className="mb-5 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/[0.06] px-3 py-1.5 text-xs text-emerald-300 sm:mb-6 sm:px-3.5 sm:text-sm"
+              className="
+                mb-4
+                inline-flex
+                max-w-full
+                items-center
+                gap-2
+                rounded-full
+                border
+                border-emerald-400/20
+                bg-emerald-400/[0.06]
+                px-3
+                py-1.5
+                text-xs
+                text-emerald-300
+
+                sm:mb-6
+                sm:px-3.5
+                sm:text-sm
+              "
             >
-              <span className="relative flex h-2 w-2">
+              <span className="relative flex h-2 w-2 shrink-0">
                 <span
                   aria-hidden="true"
                   className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60"
@@ -108,7 +193,9 @@ function Home() {
                 />
               </span>
 
-              Available for opportunities
+              <span className="truncate">
+                Available for opportunities
+              </span>
             </motion.div>
 
             {/* Heading */}
@@ -126,7 +213,21 @@ function Home() {
                 delay: reducedMotion ? 0 : 0.25,
                 duration: reducedMotion ? 0 : 0.65,
               }}
-              className="max-w-3xl text-4xl font-semibold leading-[1.05] tracking-[-0.045em] text-white sm:text-5xl lg:text-7xl"
+              className="
+                max-w-3xl
+                text-[2.35rem]
+                font-semibold
+                leading-[1.05]
+                tracking-[-0.045em]
+                text-white
+
+                min-[375px]:text-[2.6rem]
+
+                sm:text-5xl
+                md:text-6xl
+                lg:text-6xl
+                xl:text-7xl
+              "
             >
               Software Engineer
 
@@ -149,7 +250,19 @@ function Home() {
                 delay: reducedMotion ? 0 : 0.4,
                 duration: reducedMotion ? 0 : 0.6,
               }}
-              className="mt-5 max-w-2xl text-sm leading-6 text-slate-400 sm:mt-6 sm:text-base sm:leading-7 lg:text-lg"
+              className="
+                mt-4
+                max-w-2xl
+                text-sm
+                leading-6
+                text-slate-400
+
+                sm:mt-6
+                sm:text-base
+                sm:leading-7
+
+                lg:text-lg
+              "
             >
               Building scalable backend systems, developer tools and
               AI-powered applications with a focus on clean architecture,
@@ -168,17 +281,31 @@ function Home() {
                 delay: reducedMotion ? 0 : 0.55,
                 duration: reducedMotion ? 0 : 0.6,
               }}
-              className="mt-5 flex max-w-2xl flex-wrap gap-x-3 gap-y-1.5 text-xs text-slate-500 sm:mt-6 sm:gap-x-4 sm:gap-y-2 sm:text-sm"
+              className="
+                mt-4
+                flex
+                max-w-2xl
+                flex-wrap
+                gap-x-3
+                gap-y-1.5
+                text-xs
+                text-slate-500
+
+                sm:mt-6
+                sm:gap-x-4
+                sm:gap-y-2
+                sm:text-sm
+              "
             >
               {technologies.map((technology, index) => (
                 <span
                   key={technology}
-                  className="flex items-center gap-2"
+                  className="flex shrink-0 items-center gap-2"
                 >
                   {index > 0 && (
                     <span
                       aria-hidden="true"
-                      className="h-1 w-1 rounded-full bg-slate-700"
+                      className="h-1 w-1 shrink-0 rounded-full bg-slate-700"
                     />
                   )}
 
@@ -201,18 +328,53 @@ function Home() {
                 delay: reducedMotion ? 0 : 0.65,
                 duration: reducedMotion ? 0 : 0.6,
               }}
-              className="mt-6 flex flex-wrap gap-2.5 sm:mt-7 sm:gap-3"
+              className="
+                mt-5
+                flex
+                w-full
+                flex-wrap
+                gap-2
+
+                sm:mt-7
+                sm:gap-3
+              "
             >
               {/* Projects */}
               <a
                 href="#projects"
-                className="group inline-flex items-center gap-2 rounded-lg bg-slate-900/60 px-4 py-2.5 text-sm font-medium text-slate-300 transition duration-200 hover:-translate-y-0.5 hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 sm:px-5 sm:py-3"
+                className="
+                  group
+                  inline-flex
+                  min-h-11
+                  items-center
+                  justify-center
+                  gap-2
+                  rounded-lg
+                  bg-slate-900/60
+                  px-4
+                  py-2.5
+                  text-sm
+                  font-medium
+                  text-slate-300
+                  transition
+                  duration-200
+                  hover:-translate-y-0.5
+                  hover:bg-slate-200
+                  hover:text-slate-950
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-blue-400
+
+                  sm:px-5
+                  sm:py-3
+                "
               >
                 Explore projects
 
                 <ArrowRight
                   size={16}
-                  className="transition-transform duration-300 group-hover:translate-x-1"
+                  aria-hidden="true"
+                  className="shrink-0 transition-transform duration-300 group-hover:translate-x-1"
                 />
               </a>
 
@@ -222,14 +384,47 @@ function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Visit Vivek's GitHub profile"
-                className="group inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-900/40 px-4 py-2.5 text-sm font-medium text-slate-200 transition duration-200 hover:-translate-y-0.5 hover:border-slate-500 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 sm:px-5 sm:py-3"
+                className="
+                  group
+                  inline-flex
+                  min-h-11
+                  items-center
+                  justify-center
+                  gap-2
+                  rounded-lg
+                  border
+                  border-slate-700
+                  bg-slate-900/40
+                  px-4
+                  py-2.5
+                  text-sm
+                  font-medium
+                  text-slate-200
+                  transition
+                  duration-200
+                  hover:-translate-y-0.5
+                  hover:border-slate-500
+                  hover:bg-slate-800
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-blue-400
+
+                  sm:px-5
+                  sm:py-3
+                "
               >
                 GitHub
 
                 <ArrowUpRight
                   size={16}
                   aria-hidden="true"
-                  className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  className="
+                    shrink-0
+                    transition-transform
+                    duration-200
+                    group-hover:translate-x-0.5
+                    group-hover:-translate-y-0.5
+                  "
                 />
               </a>
 
@@ -239,14 +434,45 @@ function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Open Vivek's resume"
-                className="group inline-flex items-center gap-2 rounded-lg border border-slate-800 px-4 py-2.5 text-sm font-medium text-slate-400 transition duration-200 hover:border-slate-600 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 sm:px-5 sm:py-3"
+                className="
+                  group
+                  inline-flex
+                  min-h-11
+                  items-center
+                  justify-center
+                  gap-2
+                  rounded-lg
+                  border
+                  border-slate-800
+                  px-4
+                  py-2.5
+                  text-sm
+                  font-medium
+                  text-slate-400
+                  transition
+                  duration-200
+                  hover:border-slate-600
+                  hover:text-white
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-blue-400
+
+                  sm:px-5
+                  sm:py-3
+                "
               >
                 Resume
 
                 <ArrowUpRight
                   size={16}
                   aria-hidden="true"
-                  className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  className="
+                    shrink-0
+                    transition-transform
+                    duration-200
+                    group-hover:translate-x-0.5
+                    group-hover:-translate-y-0.5
+                  "
                 />
               </a>
             </motion.div>
@@ -271,7 +497,16 @@ function Home() {
               duration: reducedMotion ? 0 : 0.8,
               ease: "easeOut",
             }}
-            className="relative mx-auto w-full max-w-[360px] sm:max-w-[420px] lg:max-w-[500px]"
+            className="
+              relative
+              mx-auto
+              w-full
+              max-w-[280px]
+
+              sm:max-w-[360px]
+
+              lg:max-w-[500px]
+            "
           >
             {/* Technical network */}
             <HeroNetwork />
@@ -293,7 +528,18 @@ function Home() {
           delay: reducedMotion ? 0 : 1,
           duration: reducedMotion ? 0 : 0.8,
         }}
-        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-4 text-xs text-slate-600 lg:flex"
+        className="
+          absolute
+          bottom-6
+          left-1/2
+          hidden
+          -translate-x-1/2
+          items-center
+          gap-4
+          text-xs
+          text-slate-600
+          lg:flex
+        "
       >
         <span className="flex items-center gap-1.5">
           <Server size={13} aria-hidden="true" />

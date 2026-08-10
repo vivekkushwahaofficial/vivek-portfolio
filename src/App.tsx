@@ -1,3 +1,8 @@
+import { useState } from "react";
+import { AnimatePresence } from "motion/react";
+
+import IntroScreen from "./components/IntroScreen";
+import WelcomeScreen from "./components/WelcomeScreen";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
@@ -9,31 +14,71 @@ import Certification from "./pages/Certification";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 
+type Screen = "intro" | "welcome" | "portfolio";
+
 function App() {
+  // Current stage of the portfolio entry experience.
+  const [screen, setScreen] = useState<Screen>("intro");
+
   return (
     <>
-      {/* Fixed site navigation */}
-      <Navbar />
+      {/* =====================================================
+          ENTRY EXPERIENCE
+          Intro → Welcome → Portfolio
+      ====================================================== */}
 
-      {/* Main portfolio content */}
-      <main id="main-content">
-        <Home />
+      <AnimatePresence mode="wait">
+        {/* ===================================================
+            1. INTRO SCREEN
+        ==================================================== */}
 
-        <About />
+        {screen === "intro" && (
+          <IntroScreen
+            key="intro"
+            onComplete={() => {
+              setScreen("welcome");
+            }}
+          />
+        )}
 
-        <Skills />
+        {/* ===================================================
+            2. WELCOME SCREEN
+        ==================================================== */}
 
-        <Experience />
+        {screen === "welcome" && (
+          <WelcomeScreen
+            key="welcome"
+            onEnter={() => {
+              setScreen("portfolio");
+            }}
+          />
+        )}
+      </AnimatePresence>
 
-        <Certification />
+      {/* =====================================================
+          3. ACTUAL PORTFOLIO
+      ====================================================== */}
 
-        <Projects />
+      {screen === "portfolio" && (
+        <>
+          {/* Fixed navigation */}
+          <Navbar />
 
-        <Contact />
-      </main>
+          {/* Main portfolio */}
+          <main id="main-content">
+            <Home />
+            <About />
+            <Skills />
+            <Experience />
+            <Certification />
+            <Projects />
+            <Contact />
+          </main>
 
-      {/* Site footer */}
-      <Footer />
+          {/* Footer */}
+          <Footer />
+        </>
+      )}
     </>
   );
 }
