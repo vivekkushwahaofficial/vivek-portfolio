@@ -481,7 +481,7 @@ function HeroNetwork() {
 
             {/* Status */}
 
-            <motion.span
+            {/* <motion.span
               aria-hidden="true"
               animate={
                 reducedMotion
@@ -513,7 +513,7 @@ function HeroNetwork() {
                 border-[#080f1d]
                 bg-emerald-400
               "
-            />
+            /> */}
           </div>
 
           {/* Profile information */}
