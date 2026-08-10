@@ -108,7 +108,7 @@ function Skills() {
             <div>
               <div className="mb-7 flex items-center gap-3 sm:mb-9 sm:gap-4">
                 <span className="font-mono text-xs text-blue-400 sm:text-sm">
-                  03
+                  02
                 </span>
 
                 <span

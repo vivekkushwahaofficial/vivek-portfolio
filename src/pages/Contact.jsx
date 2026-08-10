@@ -183,7 +183,7 @@ Sent from your portfolio website.`,
           className="mb-8 flex items-center gap-3 sm:mb-10"
         >
           <span className="font-mono text-[10px] tracking-[0.28em] text-blue-400">
-            07
+            06
           </span>
 
           <span

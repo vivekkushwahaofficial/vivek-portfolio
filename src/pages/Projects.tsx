@@ -42,7 +42,7 @@ function Projects() {
 
               <div className="mb-3.5 flex items-center gap-3 sm:mb-4 sm:gap-4">
                 <span className="font-mono text-[10px] text-blue-400 sm:text-xs">
-                  06
+                  05
                 </span>
 
                 <span

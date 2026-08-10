@@ -120,7 +120,7 @@ function Certification() {
             className="mb-7 flex items-center gap-3 sm:mb-8 sm:gap-4"
           >
             <span className="font-mono text-[10px] font-medium tracking-[0.28em] text-blue-400 sm:text-[11px]">
-              05
+              04
             </span>
 
             <span

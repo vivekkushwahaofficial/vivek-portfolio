@@ -77,12 +77,20 @@ function ProjectCaseStudy({
         duration: reducedMotion ? 0 : isFlagship ? 0.6 : 0.45,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className={`group relative border-t border-white/[0.07] ${articleSpacing}`}
-    >
+      className={`group relative border-t border-white/[0.07] ${articleSpacing} pl-5 md:pl-8`}    >
       {/* =====================================================
           Flagship ambient glow
           ===================================================== */}
 
+      {/* Project timeline line */}
+      <div
+        aria-hidden="true"
+        className="absolute left-0 top-0 h-full w-px bg-gradient-to-b from-blue-400/50 via-white/[0.08] to-transparent" />
+
+      {/* Project start node */}
+      <div
+        aria-hidden="true"
+        className="absolute -left-[3px] top-0 h-2 w-2 rounded-full bg-blue-400 shadow-[0_0_12px_rgba(96,165,250,0.7)]" />
       {isFlagship && (
         <div
           aria-hidden="true"

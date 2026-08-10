@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowUpRight, Heart, Mail } from "lucide-react";
 import { SiGithub } from "react-icons/si";
+import profileImg from "../assets/profile.png";
 
 const footerLinks = [
   { label: "About", href: "#about" },
@@ -34,11 +35,26 @@ function LinkedInIcon({ size = 15 }) {
       width={size}
       height={size}
       viewBox="0 0 24 24"
-      fill="currentColor"
+      fill="none"
       aria-hidden="true"
-      focusable="false"
     >
-      <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V8.99h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.48v6.27ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM3.54 20.45H7.1V8.99H3.54v11.46Z" />
+      <path
+        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v2a4 4 0 0 1 2-2Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <rect
+        x="2"
+        y="8"
+        width="4"
+        height="13"
+        rx="1"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+      <circle cx="4" cy="4" r="2" stroke="currentColor" strokeWidth="1.8" />
     </svg>
   );
 }
@@ -47,7 +63,7 @@ function Footer() {
   const reducedMotion = useReducedMotion();
 
   const handleInternalNavigation = (
-    event: React.MouseEvent<HTMLAnchorElement>,
+    event: React.MouseEvent,
     href: string
   ) => {
     if (!href.startsWith("#")) {
@@ -71,20 +87,16 @@ function Footer() {
   };
 
   return (
-    <footer className="relative overflow-hidden border-t border-white/[0.07] bg-[#050914]">
+    <footer className="relative overflow-hidden">
       {/* Subtle ambient background */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[18%] top-0 h-40 w-40 rounded-full bg-blue-500/[0.025] blur-3xl sm:h-56 sm:w-56" />
-        <div className="absolute bottom-0 right-[12%] h-44 w-44 rounded-full bg-violet-500/[0.018] blur-3xl sm:h-64 sm:w-64" />
-        <div
-          className="absolute inset-0 opacity-[0.015]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)",
-            backgroundSize: "64px 64px",
-          }}
-        />
-      </div>
+      <div
+        className="absolute inset-0 opacity-[0.015]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)",
+          backgroundSize: "64px 64px",
+        }}
+      />
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         {/* Main footer area */}
@@ -93,12 +105,20 @@ function Footer() {
           <div className="min-w-0">
             <a
               href="#home"
-              onClick={(event) => handleInternalNavigation(event, "#home")}
+              onClick={(event) =>
+                handleInternalNavigation(event, "#home")
+              }
               className="group inline-flex items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60"
               aria-label="Back to home"
             >
+              {/* UPDATED: Profile image */}
               <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-lg border border-white/[0.1] bg-white/[0.035]">
-                <span className="text-sm font-semibold text-white">V</span>
+                <img
+                  src={profileImg}
+                  alt="Vivek"
+                  className="h-full w-full object-cover"
+                />
+
                 <span
                   aria-hidden="true"
                   className="absolute bottom-1.5 left-2 right-2 h-px bg-blue-400/70 transition-transform duration-300 group-hover:scale-x-125"
@@ -139,6 +159,7 @@ function Footer() {
                         className="group inline-flex items-center gap-1.5 py-1 text-sm text-slate-500 transition-colors duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60"
                       >
                         <span>{link.label}</span>
+
                         <ArrowUpRight
                           size={12}
                           className="opacity-0 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100"
@@ -163,7 +184,11 @@ function Footer() {
                     <li key={link.label}>
                       <a
                         href={link.href}
-                        target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+                        target={
+                          link.href.startsWith("mailto:")
+                            ? undefined
+                            : "_blank"
+                        }
                         rel={
                           link.href.startsWith("mailto:")
                             ? undefined
