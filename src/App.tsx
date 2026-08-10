@@ -11,27 +11,18 @@ import About from "./pages/About";
 import Skills from "./pages/Skills";
 import Experience from "./pages/Experience";
 import Certification from "./pages/Certification";
+import Publication from "./pages/Publication";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 
 type Screen = "intro" | "welcome" | "portfolio";
 
 function App() {
-  // Current stage of the portfolio entry experience.
   const [screen, setScreen] = useState<Screen>("intro");
 
   return (
     <>
-      {/* =====================================================
-          ENTRY EXPERIENCE
-          Intro → Welcome → Portfolio
-      ====================================================== */}
-
       <AnimatePresence mode="wait">
-        {/* ===================================================
-            1. INTRO SCREEN
-        ==================================================== */}
-
         {screen === "intro" && (
           <IntroScreen
             key="intro"
@@ -40,10 +31,6 @@ function App() {
             }}
           />
         )}
-
-        {/* ===================================================
-            2. WELCOME SCREEN
-        ==================================================== */}
 
         {screen === "welcome" && (
           <WelcomeScreen
@@ -55,27 +42,21 @@ function App() {
         )}
       </AnimatePresence>
 
-      {/* =====================================================
-          3. ACTUAL PORTFOLIO
-      ====================================================== */}
-
       {screen === "portfolio" && (
         <>
-          {/* Fixed navigation */}
           <Navbar />
 
-          {/* Main portfolio */}
           <main id="main-content">
             <Home />
             <About />
             <Skills />
             <Experience />
             <Certification />
+            <Publication />
             <Projects />
             <Contact />
           </main>
 
-          {/* Footer */}
           <Footer />
         </>
       )}

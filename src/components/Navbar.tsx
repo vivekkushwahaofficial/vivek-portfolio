@@ -19,6 +19,7 @@ const sections = [
   { id: "about", label: "About" },
   { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
+  { id: "publications", label: "Publications" },
   { id: "certifications", label: "Certifications" },
   { id: "projects", label: "Projects" },
   { id: "contact", label: "Contact" },
@@ -29,6 +30,7 @@ const sectionIds = [
   "about",
   "skills",
   "experience",
+  "publications",
   "certifications",
   "projects",
   "contact",
@@ -223,49 +225,19 @@ function Navbar() {
             className="group flex shrink-0 items-center gap-2 rounded-lg px-1 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 sm:gap-3"
             aria-label="Vivek Kumar — Home"
           >
-            {/* Profile image */}
-            <div
-              className="
-    relative flex h-8 w-8 shrink-0
-    items-center justify-center
-    overflow-hidden rounded-lg
-    border border-slate-700/80
-    bg-slate-900
-    transition-all duration-300
-    group-hover:border-cyan-400/40
-    group-hover:shadow-[0_0_18px_rgba(34,211,238,0.12)]
-    sm:h-9 sm:w-9 sm:rounded-xl
-  "
-
-            >
+            <div className="relative flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-slate-700/80 bg-slate-900 transition-all duration-300 group-hover:border-cyan-400/40 group-hover:shadow-[0_0_18px_rgba(34,211,238,0.12)] sm:h-9 sm:w-9 sm:rounded-xl">
               <img
                 src={profileImage}
                 alt="Vivek Kumar"
-                className="
-        h-full w-full
-        object-cover
-        transition-transform duration-300
-        group-hover:scale-105
-      "
+                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
 
-              {/* Subtle brand accent */}
               <span
                 aria-hidden="true"
-                className="
-        pointer-events-none absolute
-        inset-x-2 bottom-0.5
-        h-px
-        bg-gradient-to-r
-        from-transparent
-        via-cyan-400
-        to-transparent
-        opacity-70
-      "
+                className="pointer-events-none absolute inset-x-2 bottom-0.5 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-70"
               />
             </div>
 
-            {/* Brand name */}
             <span className="text-sm font-semibold tracking-[0.14em] text-white">
               VIVEK
             </span>
@@ -376,10 +348,7 @@ function Navbar() {
             aria-controls="mobile-navigation"
             className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-zinc-300 transition-colors hover:bg-white/[0.05] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 sm:h-10 sm:w-10 lg:hidden"
           >
-            <AnimatePresence
-              mode="wait"
-              initial={false}
-            >
+            <AnimatePresence mode="wait" initial={false}>
               {open ? (
                 <motion.span
                   key="close"
@@ -523,10 +492,7 @@ function Navbar() {
                   onClick={closeMenu}
                   className="flex min-h-10 items-center gap-3 rounded-xl px-3 py-2 text-sm text-zinc-400 transition-colors hover:bg-white/[0.03] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
                 >
-                  <SiGithub
-                    size={17}
-                    aria-hidden="true"
-                  />
+                  <SiGithub size={17} aria-hidden="true" />
 
                   <span>GitHub</span>
 
@@ -546,10 +512,7 @@ function Navbar() {
                   onClick={closeMenu}
                   className="mt-1 flex min-h-10 items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-sm font-medium text-white transition-colors hover:border-cyan-400/30 hover:bg-white/[0.07] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
                 >
-                  <FileText
-                    size={17}
-                    aria-hidden="true"
-                  />
+                  <FileText size={17} aria-hidden="true" />
 
                   <span>View Resume</span>
 
@@ -563,7 +526,7 @@ function Navbar() {
             </motion.div>
           )}
         </AnimatePresence>
-      </motion.nav >
+      </motion.nav>
     </>
   );
 }
