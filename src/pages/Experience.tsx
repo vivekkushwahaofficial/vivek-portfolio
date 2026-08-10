@@ -178,23 +178,27 @@ function Experience() {
               }}
               className="max-w-2xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7 lg:self-end lg:text-lg"
             >
-              My internship experience gave me practical exposure to backend
-              engineering, API development, database integration,
-              authentication, testing, and collaborative software development.
+              Practical experience across backend engineering, API
+              development, open source contribution, database integration,
+              authentication, and collaborative software development.
             </motion.p>
           </div>
 
           {/* =====================================================
-              Experience timeline
+              Timeline
           ===================================================== */}
 
           <div className="relative mt-8 sm:mt-10 lg:mt-12">
-            {/* Desktop timeline */}
+            {/* Timeline line */}
 
             <div
               aria-hidden="true"
               className="absolute bottom-0 left-[7px] top-2 hidden w-px bg-gradient-to-b from-blue-400/60 via-white/[0.10] to-transparent sm:block"
             />
+
+            {/* ===================================================
+                INFOSYS SPRINGBOARD
+            ==================================================== */}
 
             <motion.article
               initial="hidden"
@@ -264,9 +268,7 @@ function Experience() {
                 </span>
               </motion.div>
 
-              {/* =================================================
-                  Experience content
-              ================================================= */}
+              {/* Main internship */}
 
               <motion.div
                 variants={{
@@ -307,9 +309,7 @@ function Experience() {
                   </div>
                 </div>
 
-                {/* =================================================
-                    Project context
-                ================================================= */}
+                {/* Project context */}
 
                 <motion.div
                   variants={{
@@ -348,9 +348,7 @@ function Experience() {
                   </div>
                 </motion.div>
 
-                {/* =================================================
-                    Contributions
-                ================================================= */}
+                {/* Contributions */}
 
                 <div className="mt-6 sm:mt-8">
                   <p className="mb-3.5 text-[10px] uppercase tracking-[0.24em] text-slate-600 sm:mb-4">
@@ -388,10 +386,7 @@ function Experience() {
                         >
                           <div className="flex gap-3 sm:gap-3.5">
                             <div className="flex h-8 w-8 shrink-0 items-center justify-center border border-white/[0.08] text-slate-500 transition-colors duration-300 group-hover:border-blue-400/30 group-hover:text-blue-300 sm:h-9 sm:w-9">
-                              <Icon
-                                size={15}
-                                strokeWidth={1.5}
-                              />
+                              <Icon size={15} strokeWidth={1.5} />
                             </div>
 
                             <div className="min-w-0">
@@ -410,9 +405,7 @@ function Experience() {
                   </motion.div>
                 </div>
 
-                {/* =================================================
-                    Technology stack
-                ================================================= */}
+                {/* Technology stack */}
 
                 <motion.div
                   variants={{
@@ -450,6 +443,130 @@ function Experience() {
                 </motion.div>
               </motion.div>
             </motion.article>
+
+            {/* ===================================================
+                GSSoC — COMPACT OPEN SOURCE EXPERIENCE
+            ==================================================== */}
+
+            <motion.article
+              initial="hidden"
+              whileInView="visible"
+              viewport={{
+                once: true,
+                amount: 0.12,
+              }}
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: {
+                    staggerChildren: reducedMotion ? 0 : 0.06,
+                  },
+                },
+              }}
+              className="relative mt-10 sm:mt-12 sm:pl-12"
+            >
+              {/* Timeline node */}
+
+              <motion.div
+                variants={{
+                  hidden: {
+                    opacity: 0,
+                    scale: reducedMotion ? 1 : 0.8,
+                  },
+                  visible: {
+                    opacity: 1,
+                    scale: 1,
+                  },
+                }}
+                className="absolute left-0 top-1 hidden sm:block"
+              >
+                <div className="relative flex h-4 w-4 items-center justify-center">
+                  <span className="absolute h-4 w-4 rounded-full bg-violet-400/10" />
+
+                  <span className="relative h-2 w-2 rounded-full bg-violet-400 shadow-[0_0_14px_rgba(167,139,250,0.65)]" />
+                </div>
+              </motion.div>
+
+              {/* Date */}
+
+              <motion.div
+                variants={{
+                  hidden: {
+                    opacity: 0,
+                    y: reducedMotion ? 0 : 8,
+                  },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                  },
+                }}
+                className="mb-4 flex items-center gap-3 sm:mb-5"
+              >
+                <span className="font-mono text-[10px] tracking-[0.18em] text-violet-400 sm:text-xs">
+                  2026
+                </span>
+
+                <span
+                  aria-hidden="true"
+                  className="h-px w-6 bg-white/[0.12] sm:w-8"
+                />
+
+                <span className="text-[10px] text-slate-600 sm:text-xs">
+                  May — Aug
+                </span>
+              </motion.div>
+
+              {/* Compact experience row */}
+
+              <motion.div
+                variants={{
+                  hidden: {
+                    opacity: 0,
+                    y: reducedMotion ? 0 : 12,
+                  },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                  },
+                }}
+                className="border-y border-white/[0.08] py-5 sm:py-6 lg:py-7"
+              >
+                <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
+                  {/* Main information */}
+
+                  <div className="min-w-0">
+                    <p className="mb-2 text-[10px] uppercase tracking-[0.22em] text-slate-600 sm:text-xs">
+                      GSSoC 2026 · Open Source
+                    </p>
+
+                    <h3 className="text-2xl font-medium leading-tight tracking-[-0.025em] text-white sm:text-3xl">
+                      Open Source Contributor
+                    </h3>
+
+                    <p className="mt-2.5 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
+                      Contributed to an open-source project through GSSoC 2026
+                      with a merged pull request for dsaTracker.
+                    </p>
+                  </div>
+
+                  {/* Verified contribution */}
+
+                  <div className="flex shrink-0 flex-wrap items-center gap-2">
+                    <span className="border border-violet-400/20 bg-violet-400/[0.04] px-3 py-1.5 text-[10px] text-violet-300 sm:text-xs">
+                      AI / Agents Track
+                    </span>
+
+                    <span className="border border-white/[0.08] px-3 py-1.5 text-[10px] text-slate-400 sm:text-xs">
+                      1 PR Merged
+                    </span>
+
+                    <span className="border border-white/[0.08] px-3 py-1.5 text-[10px] text-slate-400 sm:text-xs">
+                      Top 10%
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.article>
           </div>
 
           {/* =====================================================
@@ -475,12 +592,12 @@ function Experience() {
             className="mt-5 flex flex-col gap-2 text-[10px] leading-5 text-slate-600 sm:mt-6 sm:flex-row sm:items-center sm:justify-between sm:text-xs"
           >
             <span>
-              Backend development · API engineering · Database integration
+              Backend engineering · Open source · API development
             </span>
 
             <span className="flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
-              Java Technology Stack
+              Software Engineering
             </span>
           </motion.div>
         </div>
