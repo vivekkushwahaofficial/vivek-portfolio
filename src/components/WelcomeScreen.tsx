@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 
 import { FaGithub } from "react-icons/fa";
+
 import {
   AnimatePresence,
   motion,
@@ -37,8 +38,8 @@ function WelcomeScreen({
   const [isOpen, setIsOpen] = useState(true);
 
   /*
-   * Prevents animations from causing layout problems
-   * on very small screens.
+   * Detect short screens so the layout can
+   * become more compact without scrolling.
    */
   const [isShortScreen, setIsShortScreen] =
     useState(false);
@@ -91,8 +92,7 @@ function WelcomeScreen({
             fixed
             inset-0
             z-[100]
-            overflow-y-auto
-            overflow-x-hidden
+            overflow-hidden
             bg-[#03070d]
             text-white
             overscroll-none
@@ -235,20 +235,21 @@ function WelcomeScreen({
               relative
               mx-auto
               flex
-              min-h-[100dvh]
+              h-[100dvh]
+              min-h-0
               w-full
               max-w-[1440px]
               items-center
               px-5
-              py-10
+              py-5
               sm:px-8
-              sm:py-12
+              sm:py-8
               md:px-10
               lg:px-14
               xl:px-20
               2xl:px-24
               ${isShortScreen
-                ? "py-8 sm:py-8"
+                ? "py-3 sm:py-6"
                 : ""
               }
             `}
@@ -270,8 +271,8 @@ function WelcomeScreen({
                 grid
                 w-full
                 items-center
-                gap-8
-                sm:gap-10
+                gap-3
+                sm:gap-6
                 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.86fr)]
                 lg:gap-2
                 xl:grid-cols-[minmax(0,1fr)_minmax(500px,0.9fr)]
@@ -428,7 +429,7 @@ function WelcomeScreen({
                   <span
                     className="
                       block
-                      text-[clamp(3.8rem,14vw,5.8rem)]
+                      text-[clamp(3.2rem,13vw,5.8rem)]
                       sm:text-[clamp(4.5rem,11vw,6.4rem)]
                       md:text-[clamp(5rem,9vw,6.8rem)]
                       lg:text-[clamp(4.5rem,7vw,6.5rem)]
@@ -446,7 +447,7 @@ function WelcomeScreen({
                       via-cyan-300
                       to-violet-400
                       bg-clip-text
-                      text-[clamp(3.8rem,14vw,5.8rem)]
+                      text-[clamp(3.2rem,13vw,5.8rem)]
                       text-transparent
                       sm:text-[clamp(4.5rem,11vw,6.4rem)]
                       md:text-[clamp(5rem,9vw,6.8rem)]
@@ -708,13 +709,9 @@ function WelcomeScreen({
                   }}
                 >
                   <span>Java</span>
-
                   <span>•</span>
-
                   <span>Spring Boot</span>
-
                   <span>•</span>
-
                   <span>AI</span>
                 </motion.div>
               </motion.div>
@@ -733,10 +730,10 @@ function WelcomeScreen({
                   items-center
                   justify-center
 
-                  h-[320px]
-                  mt-1
+                  h-[clamp(230px,38dvh,300px)]
+                  mt-0
 
-                  sm:h-[370px]
+                  sm:h-[340px]
                   sm:mt-0
 
                   md:h-[400px]
@@ -750,7 +747,7 @@ function WelcomeScreen({
                   2xl:-translate-x-12
 
                   ${isShortScreen
-                    ? "sm:h-[330px] lg:h-[440px]"
+                    ? "h-[220px] sm:h-[300px] lg:h-[440px]"
                     : ""
                   }
                 `}
@@ -778,8 +775,8 @@ function WelcomeScreen({
                   aria-hidden="true"
                   className="
                     absolute
-                    h-[235px]
-                    w-[235px]
+                    h-[215px]
+                    w-[215px]
                     rounded-full
                     border
                     border-blue-400/[0.08]
@@ -812,8 +809,8 @@ function WelcomeScreen({
                   aria-hidden="true"
                   className="
                     absolute
-                    h-[215px]
-                    w-[215px]
+                    h-[200px]
+                    w-[200px]
                     rounded-full
                     border
                     border-cyan-400/[0.09]
@@ -834,11 +831,11 @@ function WelcomeScreen({
                   aria-hidden="true"
                   className="
                     absolute
-                    h-[215px]
-                    w-[215px]
+                    h-[200px]
+                    w-[200px]
                     rounded-full
                     bg-blue-500/[0.055]
-                    blur-[55px]
+                    blur-[45px]
                     sm:h-[270px]
                     sm:w-[270px]
                     md:h-[300px]
@@ -856,8 +853,8 @@ function WelcomeScreen({
                   className="
                     relative
                     z-10
-                    h-[190px]
-                    w-[190px]
+                    h-[175px]
+                    w-[175px]
                     rounded-full
                     p-[3px]
                     sm:h-[235px]
@@ -1173,31 +1170,6 @@ function WelcomeScreen({
               sm:w-44
             "
           />
-
-          {/* =====================================================
-              MOBILE STACK FOOTER
-          ====================================================== */}
-
-          <div
-            aria-hidden="true"
-            className="
-              pointer-events-none
-              absolute
-              bottom-4
-              left-1/2
-              hidden
-              -translate-x-1/2
-              whitespace-nowrap
-              font-mono
-              text-[7px]
-              uppercase
-              tracking-[0.3em]
-              text-slate-700
-              sm:hidden
-            "
-          >
-            Java · Spring Boot · AI
-          </div>
         </motion.section>
       )}
     </AnimatePresence>
