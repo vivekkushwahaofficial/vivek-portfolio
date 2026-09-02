@@ -9,9 +9,9 @@ import {
   Mail,
   Send,
 } from "lucide-react";
-import { SiGithub, SiGitlab } from "react-icons/si";
+import { SiGithub, SiGitlab, SiX } from "react-icons/si";
 
-const EMAIL = "vivek39101@gmail.com";
+const EMAIL = "vivekkushwaha.tech@zohomail.in";
 
 const PROFILE_LINKS = [
   {
@@ -31,6 +31,12 @@ const PROFILE_LINKS = [
     value: "vivekkushwahaofficial",
     href: "https://gitlab.com/vivekkushwahaofficial",
     icon: SiGitlab,
+  },
+    {
+    label: "X",
+    value: "@vivekkushdev",
+    href: "https://x.com/vivekkushdev",
+    icon: SiX,
   },
   {
     label: "Email",
@@ -697,7 +703,7 @@ Sent from your portfolio website.`,
               grid
               grid-cols-1
               sm:grid-cols-2
-              lg:grid-cols-4
+              lg:grid-cols-5
             "
           >
             {PROFILE_LINKS.map((link, index) => (

@@ -8,6 +8,7 @@ const footerLinks = [
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
+  { label: "Certifications", href: "#certifications" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -24,7 +25,7 @@ const socialLinks = [
   },
   {
     label: "Email",
-    href: "mailto:vivek39101@gmail.com",
+    href: "mailto:vivekkushwaha.tech@zohomail.in",
     icon: Mail,
   },
 ];
@@ -46,10 +47,7 @@ function LinkedInIcon({ size = 15 }) {
 function Footer() {
   const reducedMotion = useReducedMotion();
 
-  const handleInternalNavigation = (
-    event: React.MouseEvent,
-    href: string
-  ) => {
+  const handleInternalNavigation = (event: React.MouseEvent, href: string) => {
     if (!href.startsWith("#")) {
       return;
     }
@@ -90,9 +88,7 @@ function Footer() {
           <div className="min-w-0">
             <a
               href="#home"
-              onClick={(event) =>
-                handleInternalNavigation(event, "#home")
-              }
+              onClick={(event) => handleInternalNavigation(event, "#home")}
               className="group inline-flex items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60"
               aria-label="Back to home"
             >
@@ -117,9 +113,7 @@ function Footer() {
 
             <p className="mt-6 max-w-xl text-2xl font-medium leading-tight tracking-[-0.025em] text-white sm:mt-7 sm:text-3xl">
               Building software with{" "}
-              <span className="text-slate-500">
-                purpose.
-              </span>
+              <span className="text-slate-500">purpose.</span>
             </p>
 
             <p className="mt-4 max-w-lg text-sm leading-6 text-slate-500 sm:mt-5 sm:leading-7">
@@ -141,10 +135,7 @@ function Footer() {
                       <a
                         href={link.href}
                         onClick={(event) =>
-                          handleInternalNavigation(
-                            event,
-                            link.href
-                          )
+                          handleInternalNavigation(event, link.href)
                         }
                         className="group inline-flex items-center gap-1.5 py-1 text-sm text-slate-500 transition-colors duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60"
                       >
@@ -175,9 +166,7 @@ function Footer() {
                       <a
                         href={link.href}
                         target={
-                          link.href.startsWith("mailto:")
-                            ? undefined
-                            : "_blank"
+                          link.href.startsWith("mailto:") ? undefined : "_blank"
                         }
                         rel={
                           link.href.startsWith("mailto:")
@@ -192,9 +181,7 @@ function Footer() {
                           className="shrink-0 transition-transform duration-200 group-hover:-translate-y-0.5"
                         />
 
-                        <span className="truncate">
-                          {link.label}
-                        </span>
+                        <span className="truncate">{link.label}</span>
 
                         <ArrowUpRight
                           size={12}
@@ -226,7 +213,6 @@ function Footer() {
                 strokeWidth={1.5}
                 className="shrink-0 text-slate-700"
               />
-
               Software engineering
             </span>
 
@@ -235,7 +221,6 @@ function Footer() {
                 aria-hidden="true"
                 className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]"
               />
-
               System operational
             </span>
           </div>
