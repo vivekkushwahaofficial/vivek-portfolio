@@ -34,8 +34,8 @@ const PROFILE_LINKS = [
   },
     {
     label: "X",
-    value: "@vivekkushdev",
-    href: "https://x.com/vivekkushdev",
+    value: "@iamvivek_tech",
+    href: "https://x.com/iamvivek_tech",
     icon: SiX,
   },
   {
