@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { ElementType, ChangeEvent } from "react";
+import type { ElementType, ChangeEvent, SubmitEvent } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import SectionRail from "../components/SectionRail";
 
@@ -72,6 +72,10 @@ function Contact() {
   const reducedMotion = useReducedMotion();
 
   const [copied, setCopied] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -115,6 +119,44 @@ function Contact() {
       ...previous,
       [name]: value,
     }));
+  };
+  const handleSubmit = async (event: SubmitEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    try {
+      const response = await fetch(
+        "https://api.web3forms.com/submit",
+        {
+          method: "POST",
+          body: new FormData(event.currentTarget),
+        }
+      );
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(
+          result.message || "Unable to send your message."
+        );
+      }
+
+      setSubmitted(true);
+
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+    } catch {
+      setSubmitError(
+        "Something went wrong. Please try again or email me directly."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -416,9 +458,25 @@ function Contact() {
             }}
             className="min-w-0"
           >
+            {submitted && (
+              <div
+                role="status"
+                className="rounded-xl border border-emerald-400/20 bg-emerald-400/[0.06] px-4 py-3 text-sm text-emerald-300"
+              >
+                Message sent successfully. Thanks for reaching out!
+              </div>
+            )}
+
+            {submitError && (
+              <div
+                role="alert"
+                className="rounded-xl border border-red-400/20 bg-red-400/[0.06] px-4 py-3 text-sm text-red-300"
+              >
+                {submitError}
+              </div>
+            )}
             <form
-              action="https://api.web3forms.com/submit"
-              method="POST"
+              onSubmit={handleSubmit}
               className="
               relative
               rounded-2xl
@@ -630,8 +688,7 @@ function Contact() {
                   "
                 >
                   <span className="truncate">
-                    Send Message
-                  </span>
+                    {isSubmitting ? "Sending..." : submitted ? "Message Sent ✓" : "Send Message"}                  </span>
 
                   <Send
                     size={15}
