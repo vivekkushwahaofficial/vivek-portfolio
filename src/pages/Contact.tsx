@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { ElementType, ChangeEvent, FormEvent } from "react";
+import type { ElementType, ChangeEvent } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import SectionRail from "../components/SectionRail";
 
@@ -72,10 +72,6 @@ function Contact() {
   const reducedMotion = useReducedMotion();
 
   const [copied, setCopied] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState("");
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -119,96 +115,6 @@ function Contact() {
       ...previous,
       [name]: value,
     }));
-
-    if (submitted) {
-      setSubmitted(false);
-    }
-  };
-
-  const handleSubmit = async (
-    event: FormEvent<HTMLFormElement>,
-  ) => {
-    event.preventDefault();
-
-    if (isSubmitting) {
-      return;
-    }
-
-    const name = formData.name.trim();
-    const email = formData.email.trim();
-    const message = formData.message.trim();
-
-    if (!name || !email || !message) {
-      return;
-    }
-
-    if (!WEB3FORMS_ACCESS_KEY) {
-      setSubmitError(
-        "Contact form is temporarily unavailable. Please email me directly.",
-      );
-      return;
-    }
-
-    setIsSubmitting(true);
-    setSubmitError("");
-    setSubmitted(false);
-
-    try {
-      const formPayload = new FormData(event.currentTarget);
-
-      formPayload.set("name", name);
-      formPayload.set("email", email);
-      formPayload.set("message", message);
-
-      formPayload.set(
-        "access_key",
-        WEB3FORMS_ACCESS_KEY,
-      );
-
-      formPayload.set(
-        "subject",
-        `Portfolio Contact — ${name}`,
-      );
-
-      const response = await fetch(
-        "https://api.web3forms.com/submit",
-        {
-          method: "POST",
-          body: formPayload,
-        },
-      );
-
-      const result = await response.json();
-
-      if (!response.ok || !result.success) {
-        throw new Error(
-          result.message || "Unable to send your message.",
-        );
-      }
-
-      setSubmitted(true);
-
-      setFormData({
-        name: "",
-        email: "",
-        message: "",
-      });
-
-      window.setTimeout(() => {
-        setSubmitted(false);
-      }, 3000);
-    } catch (error) {
-      console.error(
-        "Web3Forms submission error:",
-        error,
-      );
-
-      setSubmitError(
-        "Something went wrong. Please try again or email me directly.",
-      );
-    } finally {
-      setIsSubmitting(false);
-    }
   };
 
   return (
@@ -511,39 +417,36 @@ function Contact() {
             className="min-w-0"
           >
             <form
-              onSubmit={handleSubmit}
+              action="https://api.web3forms.com/submit"
+              method="POST"
               className="
-                relative
-                rounded-2xl
-                border
-                border-white/[0.08]
-                bg-[#0a0f1b]/90
-                p-4
-                shadow-[0_18px_50px_rgba(0,0,0,0.16)]
-                transition-colors
-                duration-300
-                hover:border-white/[0.12]
-                sm:p-6
-                lg:p-7
-              "
+    relative
+    rounded-2xl
+    border
+    border-white/[0.08]
+    bg-[#0a0f1b]/90
+    p-4
+    shadow-[0_18px_50px_rgba(0,0,0,0.16)]
+    transition-colors
+    duration-300
+    hover:border-white/[0.12]
+    sm:p-6
+    lg:p-7
+  "
             >
-              {/* Top accent */}
-              <div
-                aria-hidden="true"
-                className="
-                  absolute
-                  left-4
-                  right-4
-                  top-0
-                  h-px
-                  bg-gradient-to-r
-                  from-transparent
-                  via-blue-400/60
-                  to-transparent
-                  sm:left-6
-                  sm:right-6
-                "
+              <input
+                type="hidden"
+                name="access_key"
+                value={WEB3FORMS_ACCESS_KEY}
               />
+
+              <input
+                type="hidden"
+                name="subject"
+                value="Portfolio Contact"
+              />
+
+              {/* existing form content stays exactly the same */}
 
               {/* Header */}
               <div className="mb-5 sm:mb-6">
@@ -690,7 +593,6 @@ function Contact() {
                 {/* Submit */}
                 <motion.button
                   type="submit"
-                  disabled={isSubmitting}
                   whileHover={
                     reducedMotion
                       ? undefined
@@ -728,11 +630,7 @@ function Contact() {
                   "
                 >
                   <span className="truncate">
-                    {isSubmitting
-                      ? "Sending..."
-                      : submitted
-                        ? "Message Sent!"
-                        : "Send Message"}
+                    Send Message
                   </span>
 
                   <Send
@@ -742,15 +640,8 @@ function Contact() {
                   />
                 </motion.button>
 
-                <p
-                  aria-live="polite"
-                  className={`text-center text-[10px] leading-4 transition-colors duration-300 ${submitError
-                    ? "text-red-400"
-                    : "text-slate-600"
-                    }`}
-                >
-                  {submitError ||
-                    "Your message will be sent securely."}
+                <p className="text-center text-[10px] leading-4 text-slate-600">
+                  Your message will be sent securely.
                 </p>
               </div>
             </form>
