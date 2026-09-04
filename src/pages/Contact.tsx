@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { ElementType, ChangeEvent, FormEvent } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import SectionRail from "../components/SectionRail";
 
@@ -13,7 +14,10 @@ import { SiGithub, SiGitlab, SiX } from "react-icons/si";
 
 const EMAIL = "vivekkushwaha.tech@zohomail.in";
 
-const PROFILE_LINKS = [
+const WEB3FORMS_ACCESS_KEY =
+  import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+
+const PROFILE_LINKS: { label: string; value: string; href: string; icon: ElementType }[] = [
   {
     label: "GitHub",
     value: "vivekkushwahaofficial",
@@ -24,7 +28,7 @@ const PROFILE_LINKS = [
     label: "LinkedIn",
     value: "vivekkushwahaofficial",
     href: "https://www.linkedin.com/in/vivekkushwahaofficial/",
-    icon: "linkedin",
+    icon: LinkedInIcon,
   },
   {
     label: "GitLab",
@@ -32,10 +36,10 @@ const PROFILE_LINKS = [
     href: "https://gitlab.com/vivekkushwahaofficial",
     icon: SiGitlab,
   },
-    {
+  {
     label: "X",
-    value: "@iamvivek_tech",
-    href: "https://x.com/iamvivek_tech",
+    value: "@vivekkushdev",
+    href: "https://x.com/vivekkushdev",
     icon: SiX,
   },
   {
@@ -46,7 +50,7 @@ const PROFILE_LINKS = [
   },
 ];
 
-function LinkedInIcon({ size = 16 }) {
+function LinkedInIcon({ size = 16 }: { size?: number }) {
   return (
     <svg
       width={size}
@@ -60,11 +64,7 @@ function LinkedInIcon({ size = 16 }) {
   );
 }
 
-function ContactIcon({ icon: Icon }) {
-  if (Icon === "linkedin") {
-    return <LinkedInIcon />;
-  }
-
+function ContactIcon({ icon: Icon }: { icon: ElementType }) {
   return <Icon size={16} strokeWidth={1.5} />;
 }
 
@@ -73,6 +73,8 @@ function Contact() {
 
   const [copied, setCopied] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const [formData, setFormData] = useState({
     name: "",
@@ -108,7 +110,9 @@ function Contact() {
     }
   };
 
-  const handleChange = (event) => {
+  const handleChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = event.target;
 
     setFormData((previous) => ({
@@ -121,8 +125,14 @@ function Contact() {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (
+    event: FormEvent<HTMLFormElement>,
+  ) => {
     event.preventDefault();
+
+    if (isSubmitting) {
+      return;
+    }
 
     const name = formData.name.trim();
     const email = formData.email.trim();
@@ -132,26 +142,73 @@ function Contact() {
       return;
     }
 
-    const subject = encodeURIComponent(
-      `Portfolio Contact — ${name}`,
-    );
+    if (!WEB3FORMS_ACCESS_KEY) {
+      setSubmitError(
+        "Contact form is temporarily unavailable. Please email me directly.",
+      );
+      return;
+    }
 
-    const body = encodeURIComponent(
-      `Hello Vivek,
+    setIsSubmitting(true);
+    setSubmitError("");
+    setSubmitted(false);
 
-Name: ${name}
-Email: ${email}
+    try {
+      const formPayload = new FormData(event.currentTarget);
 
-Message:
-${message}
+      formPayload.set("name", name);
+      formPayload.set("email", email);
+      formPayload.set("message", message);
 
-Sent from your portfolio website.`,
-    );
+      formPayload.set(
+        "access_key",
+        WEB3FORMS_ACCESS_KEY,
+      );
 
-    setSubmitted(true);
+      formPayload.set(
+        "subject",
+        `Portfolio Contact — ${name}`,
+      );
 
-    window.location.href =
-      `mailto:${EMAIL}?subject=${subject}&body=${body}`;
+      const response = await fetch(
+        "https://api.web3forms.com/submit",
+        {
+          method: "POST",
+          body: formPayload,
+        },
+      );
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(
+          result.message || "Unable to send your message.",
+        );
+      }
+
+      setSubmitted(true);
+
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+
+      window.setTimeout(() => {
+        setSubmitted(false);
+      }, 3000);
+    } catch (error) {
+      console.error(
+        "Web3Forms submission error:",
+        error,
+      );
+
+      setSubmitError(
+        "Something went wrong. Please try again or email me directly.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -633,6 +690,7 @@ Sent from your portfolio website.`,
                 {/* Submit */}
                 <motion.button
                   type="submit"
+                  disabled={isSubmitting}
                   whileHover={
                     reducedMotion
                       ? undefined
@@ -665,12 +723,16 @@ Sent from your portfolio website.`,
                     focus:outline-none
                     focus-visible:ring-2
                     focus-visible:ring-blue-400/60
+                    disabled:cursor-not-allowed
+                    disabled:opacity-70
                   "
                 >
                   <span className="truncate">
-                    {submitted
-                      ? "Opening email client..."
-                      : "Send Message"}
+                    {isSubmitting
+                      ? "Sending..."
+                      : submitted
+                        ? "Message Sent!"
+                        : "Send Message"}
                   </span>
 
                   <Send
@@ -680,8 +742,15 @@ Sent from your portfolio website.`,
                   />
                 </motion.button>
 
-                <p className="text-center text-[10px] leading-4 text-slate-600">
-                  Submitting opens your default email client.
+                <p
+                  aria-live="polite"
+                  className={`text-center text-[10px] leading-4 transition-colors duration-300 ${submitError
+                    ? "text-red-400"
+                    : "text-slate-600"
+                    }`}
+                >
+                  {submitError ||
+                    "Your message will be sent securely."}
                 </p>
               </div>
             </form>
