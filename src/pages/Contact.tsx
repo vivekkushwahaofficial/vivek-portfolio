@@ -420,19 +420,19 @@ function Contact() {
               action="https://api.web3forms.com/submit"
               method="POST"
               className="
-    relative
-    rounded-2xl
-    border
-    border-white/[0.08]
-    bg-[#0a0f1b]/90
-    p-4
-    shadow-[0_18px_50px_rgba(0,0,0,0.16)]
-    transition-colors
-    duration-300
-    hover:border-white/[0.12]
-    sm:p-6
-    lg:p-7
-  "
+              relative
+              rounded-2xl
+              border
+              border-white/[0.08]
+              bg-[#0a0f1b]/90
+              p-4
+              shadow-[0_18px_50px_rgba(0,0,0,0.16)]
+              transition-colors
+              duration-300
+              hover:border-white/[0.12]
+              sm:p-6
+              lg:p-7
+              "
             >
               <input
                 type="hidden"
