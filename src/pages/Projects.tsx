@@ -1,5 +1,6 @@
 import {
   Code2,
+  Download,
   GitBranch,
   Globe,
   LockKeyhole,
@@ -65,18 +66,15 @@ function Projects() {
                 className="max-w-4xl text-4xl font-semibold leading-[0.98] tracking-[-0.04em] sm:text-5xl lg:text-6xl"
               >
                 Software built around{" "}
-                <span className="text-slate-500">
-                  real problems.
-                </span>
+                <span className="text-slate-500">real problems.</span>
               </h2>
             </div>
 
             {/* Supporting description */}
 
             <p className="max-w-md text-sm leading-6 text-slate-500 sm:leading-7 lg:self-end">
-              Projects focused on backend engineering, developer
-              tooling, full-stack systems and practical software
-              architecture.
+              Projects focused on backend engineering, developer tooling,
+              full-stack systems and practical software architecture.
             </p>
           </div>
 
@@ -105,7 +103,7 @@ function Projects() {
               workflow={[
                 {
                   label: "Coding Platform",
-                  description: "LeetCode / GFG",
+                  description: "LeetCode / GFG / Hackerrank",
                   icon: Globe,
                 },
                 {
@@ -131,6 +129,7 @@ function Projects() {
               ]}
               github="https://github.com/vivekkushwahaofficial/CodeVault"
               live="https://code-vault-website.vercel.app/"
+              install="https://chromewebstore.google.com/detail/codevault/loigjljekeahnjccojnnkmagibghofbn"
             />
           </div>
 
@@ -285,8 +284,8 @@ function Projects() {
             />
 
             <span>
-              Projects emphasize API design, system integration and
-              maintainable architecture.
+              Projects emphasize API design, system integration and maintainable
+              architecture.
             </span>
           </div>
         </div>

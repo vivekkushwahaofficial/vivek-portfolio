@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from "motion/react";
 import {
   ArrowUpRight,
   Check,
+  Download,
   GitBranch,
   Layers3,
   LockKeyhole,
@@ -27,6 +28,7 @@ type ProjectCaseStudyProps = {
   workflow: WorkflowStep[];
   github?: string;
   live?: string;
+  install?: string;
   variant?: "flagship" | "compact";
   flagship?: boolean;
 };
@@ -42,14 +44,14 @@ function ProjectCaseStudy({
   workflow,
   github,
   live,
+  install,
   variant,
   flagship = false,
 }: ProjectCaseStudyProps) {
   const reducedMotion = useReducedMotion();
 
   const isFlagship =
-    variant === "flagship" ||
-    (variant === undefined && flagship);
+    variant === "flagship" || (variant === undefined && flagship);
 
   const articleSpacing = isFlagship
     ? "py-8 sm:py-11 lg:py-14"
@@ -105,9 +107,7 @@ function ProjectCaseStudy({
 
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[10px] tracking-[0.22em] text-slate-500 sm:gap-4 sm:text-xs sm:tracking-[0.28em]">
-            <span className="font-mono text-blue-400">
-              {number}
-            </span>
+            <span className="font-mono text-blue-400">{number}</span>
 
             <span
               aria-hidden="true"
@@ -129,7 +129,6 @@ function ProjectCaseStudy({
                 aria-hidden="true"
                 className="h-1.5 w-1.5 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(96,165,250,0.8)]"
               />
-
               FLAGSHIP PROJECT
             </div>
           )}
@@ -149,10 +148,9 @@ function ProjectCaseStudy({
           </p>
 
           <div
-            className={`flex flex-wrap gap-1.5 sm:gap-2 ${isFlagship
-              ? "mt-4 sm:mt-6"
-              : "mt-3.5 sm:mt-4"
-              }`}
+            className={`flex flex-wrap gap-1.5 sm:gap-2 ${
+              isFlagship ? "mt-4 sm:mt-6" : "mt-3.5 sm:mt-4"
+            }`}
           >
             {technologies.map((technology) => (
               <span
@@ -171,8 +169,9 @@ function ProjectCaseStudy({
           ===================================================== */}
 
       <div
-        className={`relative mt-7 grid overflow-hidden rounded-xl border border-white/[0.07] bg-white/[0.035] sm:mt-8 sm:rounded-2xl md:grid-cols-2 ${isFlagship ? "lg:mt-10" : "lg:mt-8"
-          }`}
+        className={`relative mt-7 grid overflow-hidden rounded-xl border border-white/[0.07] bg-white/[0.035] sm:mt-8 sm:rounded-2xl md:grid-cols-2 ${
+          isFlagship ? "lg:mt-10" : "lg:mt-8"
+        }`}
       >
         {/* Problem */}
 
@@ -216,18 +215,13 @@ function ProjectCaseStudy({
           ===================================================== */}
 
       <div
-        className={`relative mt-6 overflow-hidden rounded-xl border border-white/[0.07] bg-[#060b15] sm:mt-7 sm:rounded-2xl ${isFlagship
-          ? "p-4.5 sm:p-6 lg:p-7"
-          : "p-4 sm:p-5"
-          }`}
+        className={`relative mt-6 overflow-hidden rounded-xl border border-white/[0.07] bg-[#060b15] sm:mt-7 sm:rounded-2xl ${
+          isFlagship ? "p-4.5 sm:p-6 lg:p-7" : "p-4 sm:p-5"
+        }`}
       >
         <div className="mb-4 flex items-center justify-between gap-4 sm:mb-5">
           <div className="flex items-center gap-2.5 sm:gap-3">
-            <Workflow
-              size={17}
-              strokeWidth={1.5}
-              className="text-blue-400"
-            />
+            <Workflow size={17} strokeWidth={1.5} className="text-blue-400" />
 
             <span className="text-[10px] uppercase tracking-[0.2em] text-slate-500 sm:text-xs">
               Engineering workflow
@@ -250,32 +244,24 @@ function ProjectCaseStudy({
             const Icon = step.icon;
 
             return (
-              <div
-                key={`${step.label}-${index}`}
-                className="relative min-w-0"
-              >
+              <div key={`${step.label}-${index}`} className="relative min-w-0">
                 <motion.div
                   whileHover={
                     reducedMotion
                       ? undefined
                       : {
-                        y: -3,
-                        borderColor:
-                          "rgba(96,165,250,0.3)",
-                      }
+                          y: -3,
+                          borderColor: "rgba(96,165,250,0.3)",
+                        }
                   }
                   transition={{ duration: 0.2 }}
-                  className={`h-full rounded-xl border border-white/[0.07] bg-white/[0.02] ${isFlagship
-                    ? "p-3.5 sm:p-4"
-                    : "p-3 sm:p-3.5"
-                    }`}
+                  className={`h-full rounded-xl border border-white/[0.07] bg-white/[0.02] ${
+                    isFlagship ? "p-3.5 sm:p-4" : "p-3 sm:p-3.5"
+                  }`}
                 >
                   <div className="flex items-center justify-between gap-3">
                     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-500/[0.08] text-blue-400 sm:h-9 sm:w-9">
-                      <Icon
-                        size={17}
-                        strokeWidth={1.6}
-                      />
+                      <Icon size={17} strokeWidth={1.6} />
                     </div>
 
                     <span className="font-mono text-[9px] text-slate-600 sm:text-[10px]">
@@ -333,11 +319,7 @@ function ProjectCaseStudy({
       {isFlagship && (
         <div className="relative mt-6 overflow-hidden rounded-xl border border-white/[0.07] bg-[#060b15] p-4.5 sm:mt-7 sm:rounded-2xl sm:p-6 lg:p-7">
           <div className="flex items-center gap-2.5 sm:gap-3">
-            <Server
-              size={17}
-              strokeWidth={1.5}
-              className="text-blue-400"
-            />
+            <Server size={17} strokeWidth={1.5} className="text-blue-400" />
 
             <span className="text-[10px] uppercase tracking-[0.2em] text-slate-500 sm:text-xs">
               Architecture
@@ -363,10 +345,7 @@ function ProjectCaseStudy({
                 </span>
 
                 {index < items.length - 1 && (
-                  <span
-                    aria-hidden="true"
-                    className="text-blue-500/50"
-                  >
+                  <span aria-hidden="true" className="text-blue-500/50">
                     →
                   </span>
                 )}
@@ -377,52 +356,76 @@ function ProjectCaseStudy({
       )}
 
       {/* =====================================================
-          Project actions
-          ===================================================== */}
+    Project actions
+    ===================================================== */}
 
-      {(github || live) && (
+      {(github || live || install) && (
         <div
-          className={`flex flex-wrap items-center gap-2.5 sm:gap-3 ${isFlagship
-            ? "mt-5 sm:mt-6"
-            : "mt-4.5 sm:mt-5"
-            }`}
+          className={`flex flex-wrap items-center gap-2.5 sm:gap-3 ${
+            isFlagship ? "mt-5 sm:mt-6" : "mt-4.5 sm:mt-5"
+          }`}
         >
-          {github && (
-            <a
-              href={github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group/link inline-flex min-h-10 items-center gap-2 rounded-xl border border-white/[0.1] bg-white/[0.03] px-3.5 py-2.5 text-xs font-medium text-white transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400/30 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60 sm:min-h-11 sm:px-5 sm:py-3 sm:text-sm"
-            >
-              <GitBranch
-                size={16}
-                strokeWidth={1.7}
-              />
+          {/* Action buttons */}
 
-              <span>GitHub</span>
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+            {github && (
+              <a
+                href={github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/link inline-flex min-h-10 items-center gap-2 rounded-xl border border-white/[0.1] bg-white/[0.03] px-3.5 py-2.5 text-xs font-medium text-white transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400/30 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60 sm:min-h-11 sm:px-5 sm:py-3 sm:text-sm"
+              >
+                <GitBranch size={16} strokeWidth={1.7} />
 
-              <ArrowUpRight
-                size={14}
-                className="transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
-              />
-            </a>
-          )}
+                <span>GitHub</span>
 
-          {live && (
-            <a
-              href={live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group/link inline-flex min-h-10 items-center gap-2 rounded-xl border border-slate-700/80 bg-slate-900/60 px-3.5 py-2.5 text-xs font-medium text-slate-300 transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400/40 hover:bg-blue-500/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60 sm:min-h-11 sm:px-5 sm:py-3 sm:text-sm"
-            >
-              <span>Live Demo</span>
+                <ArrowUpRight
+                  size={14}
+                  className="transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
+                />
+              </a>
+            )}
 
-              <ArrowUpRight
-                size={14}
-                className="transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
-              />
-            </a>
-          )}
+            {live && (
+              <a
+                href={live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/link inline-flex min-h-10 items-center gap-2 rounded-xl border border-slate-700/80 bg-slate-900/60 px-3.5 py-2.5 text-xs font-medium text-slate-300 transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400/40 hover:bg-blue-500/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60 sm:min-h-11 sm:px-5 sm:py-3 sm:text-sm"
+              >
+                <span>Live Demo</span>
+
+                <ArrowUpRight
+                  size={14}
+                  className="transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
+                />
+              </a>
+            )}
+
+            {install && (
+              <a
+                href={install}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/link inline-flex min-h-10 items-center gap-2 rounded-xl border border-purple-400/25 bg-purple-500/[0.08] px-3.5 py-2.5 text-xs font-medium text-purple-200 transition-all duration-200 hover:-translate-y-0.5 hover:border-purple-400/50 hover:bg-purple-500/[0.14] hover:shadow-[0_8px_24px_rgba(168,85,247,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400/60 sm:min-h-11 sm:px-5 sm:py-3 sm:text-sm"
+              >
+                <Download
+                  size={16}
+                  strokeWidth={1.7}
+                  className="transition-transform duration-300 group-hover/link:-translate-y-0.5"
+                />
+
+                <span>Install Extension</span>
+
+                <ArrowUpRight
+                  size={14}
+                  className="transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
+                />
+              </a>
+            )}
+          </div>
+
+          {/* Flagship metadata */}
 
           {isFlagship && (
             <span className="ml-auto hidden items-center gap-2 text-xs text-slate-600 sm:flex">
