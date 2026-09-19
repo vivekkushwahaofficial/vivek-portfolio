@@ -1,16 +1,7 @@
 import { useEffect, useState } from "react";
 import profileImage from "../assets/profile.png";
-import {
-  AnimatePresence,
-  motion,
-  useReducedMotion,
-} from "motion/react";
-import {
-  ArrowUpRight,
-  FileText,
-  Menu,
-  X,
-} from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { ArrowUpRight, FileText, Menu, X } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 
 import resume from "../assets/Vivek_Kushwaha.pdf";
@@ -22,6 +13,7 @@ const sections = [
   { id: "certifications", label: "Certifications" },
   { id: "publications", label: "Publications" },
   { id: "projects", label: "Projects" },
+  { id: "github", label: "GitHub" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -33,6 +25,7 @@ const sectionIds = [
   "certifications",
   "publications",
   "projects",
+  "github",
   "contact",
 ];
 
@@ -255,19 +248,13 @@ function Navbar() {
                 <a
                   key={section.id}
                   href={`#${section.id}`}
-                  onClick={(event) =>
-                    handleNavigation(event, section.id)
-                  }
-                  aria-current={
-                    isActive ? "location" : undefined
-                  }
+                  onClick={(event) => handleNavigation(event, section.id)}
+                  aria-current={isActive ? "location" : undefined}
                   className={[
                     "relative rounded-lg px-2.5 py-2",
                     "text-[13px] transition-colors duration-200",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400",
-                    isActive
-                      ? "text-white"
-                      : "text-zinc-400 hover:text-white",
+                    isActive ? "text-white" : "text-zinc-400 hover:text-white",
                   ].join(" ")}
                 >
                   {section.label}
@@ -316,11 +303,7 @@ function Navbar() {
               aria-label="View Vivek's resume"
               className="group inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-[13px] font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-400/30 hover:bg-white/[0.07] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
             >
-              <FileText
-                size={15}
-                strokeWidth={1.8}
-                aria-hidden="true"
-              />
+              <FileText size={15} strokeWidth={1.8} aria-hidden="true" />
 
               <span>Resume</span>
 
@@ -339,11 +322,7 @@ function Navbar() {
           <button
             type="button"
             onClick={() => setOpen((previous) => !previous)}
-            aria-label={
-              open
-                ? "Close navigation menu"
-                : "Open navigation menu"
-            }
+            aria-label={open ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={open}
             aria-controls="mobile-navigation"
             className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-zinc-300 transition-colors hover:bg-white/[0.05] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 sm:h-10 sm:w-10 lg:hidden"
@@ -428,7 +407,6 @@ function Navbar() {
 
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
                   </span>
-
                   Available for opportunities
                 </div>
 
@@ -441,9 +419,7 @@ function Navbar() {
                     <motion.a
                       key={section.id}
                       href={`#${section.id}`}
-                      onClick={(event) =>
-                        handleNavigation(event, section.id)
-                      }
+                      onClick={(event) => handleNavigation(event, section.id)}
                       initial={{
                         opacity: 0,
                         x: reducedMotion ? 0 : -8,
@@ -454,9 +430,7 @@ function Navbar() {
                       }}
                       transition={{
                         duration: reducedMotion ? 0 : 0.2,
-                        delay: reducedMotion
-                          ? 0
-                          : index * 0.025,
+                        delay: reducedMotion ? 0 : index * 0.025,
                       }}
                       className={[
                         "flex min-h-10 items-center justify-between rounded-xl px-3 py-2 text-sm",
@@ -478,10 +452,7 @@ function Navbar() {
                   );
                 })}
 
-                <div
-                  aria-hidden="true"
-                  className="my-2 h-px bg-white/[0.06]"
-                />
+                <div aria-hidden="true" className="my-2 h-px bg-white/[0.06]" />
 
                 {/* GitHub */}
 

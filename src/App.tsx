@@ -14,6 +14,7 @@ import Certification from "./pages/Certification";
 import Publication from "./pages/Publication";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
+import GitHub from "./pages/GitHub";
 
 type Screen = "intro" | "welcome" | "portfolio";
 
@@ -54,6 +55,7 @@ function App() {
             <Certification />
             <Publication />
             <Projects />
+            <GitHub />
             <Contact />
           </main>
 
