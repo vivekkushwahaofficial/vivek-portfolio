@@ -28,7 +28,7 @@ const technologies = [
 
 const stats: Stat[] = [
   {
-    value: 3,
+    value: 5,
     suffix: "+",
     label: "Projects",
   },
@@ -38,7 +38,7 @@ const stats: Stat[] = [
     label: "Technologies",
   },
   {
-    value: 100,
+    value: 250,
     suffix: "+",
     label: "Coding Problems",
   },
