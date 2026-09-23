@@ -79,7 +79,7 @@ function Projects() {
           </div>
 
           {/* =====================================================
-              CodeVault — Flagship Project
+              CodeSyncVault — Flagship Project
               ===================================================== */}
 
           <div>
@@ -87,10 +87,10 @@ function Projects() {
               number="01"
               variant="flagship"
               eyebrow="FLAGSHIP PROJECT"
-              title="CodeVault"
+              title="CodeSyncVault"
               description="Developer Coding Solution Management Platform that detects accepted coding solutions, extracts metadata and source code, and synchronizes solutions with GitHub."
               problem="Developers solve problems across multiple coding platforms, but manually preserving solutions, metadata and repository structure becomes repetitive and inconsistent."
-              solution="CodeVault automates the workflow from coding-platform detection to GitHub synchronization using a browser extension, Spring Boot API and GitHub API integration."
+              solution="CodeSyncVault automates the workflow from coding-platform detection to GitHub synchronization using a browser extension, Spring Boot API and GitHub API integration."
               technologies={[
                 "WXT",
                 "React",
@@ -127,9 +127,9 @@ function Projects() {
                   icon: GitBranch,
                 },
               ]}
-              github="https://github.com/vivekkushwahaofficial/CodeVault"
+              github="https://github.com/vivekkushwahaofficial/CodeSyncVault"
               live="https://code-vault-website.vercel.app/"
-              install="https://chromewebstore.google.com/detail/codevault/loigjljekeahnjccojnnkmagibghofbn"
+              install="https://chromewebstore.google.com/detail/codeSyncvault/loigjljekeahnjccojnnkmagibghofbn"
             />
           </div>
 
