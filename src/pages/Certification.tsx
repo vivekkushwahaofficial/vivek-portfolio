@@ -12,6 +12,7 @@ import SectionRail from "../components/SectionRail";
 import javaCert from "../assets/certificates/java_certification.pdf";
 import programmingJavaCert from "../assets/certificates/Programming in Java.pdf";
 import fullStackCert from "../assets/certificates/fullstack_certification.pdf";
+import awsCloudFoundationsCert from "../assets/certificates/aws-cloud-foundations.pdf";
 
 interface CertificationItem {
   number: string;
@@ -22,6 +23,7 @@ interface CertificationItem {
   certificate: string;
   type: string;
   score?: string;
+  verificationUrl?: string; // Optional public credential verification URL.
 }
 
 const certifications: CertificationItem[] = [
@@ -55,6 +57,17 @@ const certifications: CertificationItem[] = [
       "Completed training focused on building end-to-end full-stack applications using React and Spring.",
     certificate: fullStackCert,
     type: "Learning",
+  },
+    {
+    number: "04",
+    title: "AWS Academy Graduate – Cloud Foundations",
+    provider: "AWS Academy",
+    date: "Oct 2026",
+    description:
+      "Completed 20 hours of cloud foundations training covering fundamental cloud computing concepts and AWS cloud services.",
+    certificate: awsCloudFoundationsCert,
+    type: "Cloud Foundations",
+    verificationUrl: "https://www.credly.com/go/ETSBJ95Y",
   },
 ];
 
@@ -320,6 +333,19 @@ function Certification() {
                         className="transition-transform duration-300 group-hover/action:-translate-y-0.5 group-hover/action:translate-x-0.5"
                       />
                     </a>
+                                        {certification.verificationUrl && (
+                      <a
+                        href={certification.verificationUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Verify ${certification.title} on Credly`}
+                        className="inline-flex min-h-10 items-center gap-2 border border-emerald-400/20 px-3.5 py-2.5 text-[11px] font-medium text-emerald-300 transition-colors duration-300 hover:border-emerald-400/40 hover:bg-emerald-400/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 sm:px-4 sm:text-xs"
+                      >
+                        <CheckCircle2 size={13} strokeWidth={1.5} />
+                        <span>Verify</span>
+                        <ArrowUpRight size={14} strokeWidth={1.5} />
+                      </a>
+                    )}
                   </div>
                 </div>
 
